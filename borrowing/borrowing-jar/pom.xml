@@ -7,5 +7,7 @@
   </parent>
   <artifactId>borrowing-jar</artifactId>
   <name>borrowing-jar</name>
+  <description>jar包，封装借阅系统的逻辑，业务函数
+</description>
   <build/>
 </project>
