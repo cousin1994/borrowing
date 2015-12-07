@@ -1,20 +1,61 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.gdpu.yz12</groupId>
-  <artifactId>borrowing</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>borrowing</name>
-  <description>毕业设计，图书借阅系统</description>
-  <build/>
-  <modules>
-  	<module>borrowing-jar</module>
-  	<module>borrowing-web</module>
-  </modules>
-  
-  <scm>
-  	<url>https://github.com/cousin1994/borrowing/tree/master/borrowing</url>
-  	<connection>scm:git:git://</connection>
-  </scm>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.gdpu.yz12</groupId>
+	<artifactId>borrowing</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>borrowing</name>
+	<description>毕业设计，图书借阅系统</description>
+
+	<!-- 自定义变量。路径，系统版本 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<borrowing.version>0.0.1-SNAPSHOT</borrowing.version>
+		<rundir>${basedir}\..\build\target\build-${project.version}</rundir>
+	</properties>
+
+	<modules>
+		<module>borrowing-jar</module>
+		<module>borrowing-web</module>
+		<module>build</module>
+	</modules>
+
+	<!-- 对子项目可能使用的依赖进行管理，本项目可能不使用这些依赖 -->
+	<dependencyManagement>
+		<!-- dependencyManagement 中的 dependencies 元素不会自动的加到child的dependencies 列表里。只有child里有同样的dependencies 
+			时，才会被parent中dependencyManagement 中的 dependencies 元素所影响（主要是版本信息） -->
+		<dependencies>
+			<dependency>
+				<groupId>com.gdpu.yz12</groupId>
+				<artifactId>borrowing-jar</artifactId>
+				<version>${borrowing.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.gdpu.yz12</groupId>
+				<artifactId>borrowing-web</artifactId>
+				<version>${borrowing.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- 把工程发布到git上。 -->
+	<scm>
+		<url>https://github.com/cousin1994/borrowing/tree/master/borrowing</url>
+		<connection>scm:git:git://github.com/cousin1994/borrowing.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:cousin1994/borrowing.git</developerConnection>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9.4</version>
+				<configuration>
+					<scmVersionType>branch</scmVersionType>
+					<scmVersion>master</scmVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
