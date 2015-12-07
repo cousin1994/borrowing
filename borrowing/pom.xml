@@ -11,4 +11,10 @@
   	<module>borrowing-jar</module>
   	<module>borrowing-web</module>
   </modules>
+  
+  <scm>
+  	<url>https://github.com/cousin1994/borrowing/tree/master/borrowing</url>
+  	<connection>scm:git:git://</connection>
+  </scm>
+  
 </project>
