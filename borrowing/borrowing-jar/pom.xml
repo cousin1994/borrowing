@@ -10,6 +10,10 @@
   <description>jar包，封装借阅系统的逻辑，业务函数
 </description>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 <dependencies>
 	<!-- 定义包的依赖 -->
 	<dependency>
