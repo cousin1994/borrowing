@@ -19,6 +19,7 @@
 		<module>borrowing-jar</module>
 		<module>borrowing-web</module>
 		<module>build</module>
+		<module>parent</module>
 	</modules>
 
 	<!-- 对子项目可能使用的依赖进行管理，本项目可能不使用这些依赖 -->

@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.gdpu.yz12</groupId>
+    <artifactId>borrowing</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>parent</artifactId>
+  <packaging>pom</packaging>
+  <name>parent</name>
+  <description>超级pom文件</description>
+  
+  <properties>
+  	<!-- Plugin的属性定义 -->
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	
+  	<!-- 主要依赖库的版本定义 -->
+  	<cousin.version>0.0.1-SNAPSHOT</cousin.version>
+  	<rundir>${basedir}\..\build\target\build-${cousin.version}</rundir>
+  	<jdk.version>1.8</jdk.version>
+  	<spring.version>4.2.3.RELEASE</spring.version>
+  	<spring-data-jpa.versioin>1.9.1.RELEASE</spring-data-jpa.versioin>
+  	<struts2.version>2.3.24</struts2.version>
+  	<freemarker.version>2.3.22</freemarker.version>
+  	<hibernate.version>5.0.5.Final</hibernate.version>
+  	<hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
+  	<c3p0.version>0.9.1.2</c3p0.version>
+  	<ojdbc14.version>10.2.0.4.0</ojdbc14.version>
+  	<servlet-api.version>2.5</servlet-api.version>
+  	<jstl.version>1.2</jstl.version>
+  	
+  	
+  </properties>
+  
+  
+  <dependencyManagement>
+  	
+  </dependencyManagement>
+  
+  
+  
+  
+  <build/>
+</project>
