@@ -11,14 +11,10 @@
 	<!-- 自定义变量。路径，系统版本 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<borrowing.version>0.0.1-SNAPSHOT</borrowing.version>
-		<rundir>${basedir}\..\build\target\build-${project.version}</rundir>
 	</properties>
-
 	<modules>
 		<module>borrowing-jar</module>
 		<module>borrowing-web</module>
-		<module>build</module>
 		<module>parent</module>
 	</modules>
 
