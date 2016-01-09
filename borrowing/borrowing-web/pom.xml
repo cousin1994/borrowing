@@ -50,6 +50,10 @@
 					<packagingExcludes>WEB-INF/lib/</packagingExcludes>
 				</configuration>
 			</plugin>
+<<<<<<< HEAD
 		</plugins> 
+=======
+	</plugins>
+>>>>>>> branch 'master' of https://github.com/cousin1994/borrowing.git
   </build>
 </project>
