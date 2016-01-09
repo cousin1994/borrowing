@@ -16,13 +16,16 @@
 		<module>borrowing-jar</module>
 		<module>borrowing-web</module>
 		<module>parent</module>
+		<module>util</module>
+		<module>common</module>
+		<module>core</module>
 	</modules>
 
 	<!-- 对子项目可能使用的依赖进行管理，本项目可能不使用这些依赖 -->
-	<dependencyManagement>
-		<!-- dependencyManagement 中的 dependencies 元素不会自动的加到child的dependencies 列表里。只有child里有同样的dependencies 
+<!-- 	<dependencyManagement>
+ -->		<!-- dependencyManagement 中的 dependencies 元素不会自动的加到child的dependencies 列表里。只有child里有同样的dependencies 
 			时，才会被parent中dependencyManagement 中的 dependencies 元素所影响（主要是版本信息） -->
-		<dependencies>
+<!-- 		<dependencies>
 			<dependency>
 				<groupId>com.gdpu.yz12</groupId>
 				<artifactId>borrowing-jar</artifactId>
@@ -34,14 +37,14 @@
 				<version>${borrowing.version}</version>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
+	</dependencyManagement> -->
 
-	<!-- 把工程发布到git上。 -->
-	<scm>
+	<!-- 把工程发布到git上。暂时不会。。 -->
+	<!-- <scm>
 		<url>https://github.com/cousin1994/borrowing/tree/master/borrowing</url>
 		<connection>scm:git:git://github.com/cousin1994/borrowing.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com:cousin1994/borrowing.git</developerConnection>
-	</scm>
+	</scm> -->
 
 	<build>
 		<plugins>
