@@ -1,29 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.gdpu.yz12</groupId>
-    <artifactId>parent</artifactId>
+    <groupId>com.cousin</groupId>
+    <artifactId>borrowing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../parent/</relativePath>
   </parent>
   <artifactId>build</artifactId>
   <packaging>war</packaging>
   <name>build</name>
   
- 	<properties>
+  <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties> 
+	</properties>
+  
   
   <dependencies>
   	<dependency>
-  		<groupId>com.gdpu.yz12</groupId>
-  		<artifactId>borrowing-jar</artifactId>
+  		<groupId>com.cousin</groupId>
+  		<artifactId>borrow</artifactId>
   	</dependency>
   </dependencies>
   
   <build>
-  <plugins>
-  		<plugin>
+		<plugins>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.6</version>
@@ -37,7 +37,7 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>com.gdpu.yz12</groupId>
+									<groupId>com.cousin</groupId>
 									<artifactId>common</artifactId>
 									<type>war</type>
 									<overWrite>true</overWrite>
@@ -45,8 +45,16 @@
 									<excludes>**/*.jar</excludes>
 								</artifactItem>
 								<artifactItem>
-									<groupId>com.gdpu.yz12</groupId>
-									<artifactId>borrowing-web</artifactId>
+									<groupId>com.cousin</groupId>
+									<artifactId>core-web</artifactId>
+									<type>war</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${basedir}/target/build-${project.version}</outputDirectory>
+									<excludes>**/*.jar</excludes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.cousin</groupId>
+									<artifactId>borrow-web</artifactId>
 									<type>war</type>
 									<overWrite>true</overWrite>
 									<outputDirectory>${basedir}/target/build-${project.version}</outputDirectory>
@@ -57,15 +65,14 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<version>3.0</version>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<packagingExcludes>WEB-INF/lib/</packagingExcludes>
 				</configuration>
 			</plugin>
-	</plugins>
-  </build>
+
+		</plugins>
+	</build>
 </project>
