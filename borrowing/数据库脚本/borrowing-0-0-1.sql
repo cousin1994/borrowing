@@ -1,22 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     2016/1/11 2:24:41                            */
+/* Created on:     2016/1/11 2:43:02                            */
 /*==============================================================*/
 
-
-alter table BASIC_READER
-   drop constraint FK_BASIC_RE_FK_BASIC__WORKTYPE;
-
-alter table BOOK
-   drop constraint FK_BOOK_FK_BOOK_R_BOOKTYPE;
-
-alter table RECORD
-   drop constraint FK_RECORD_FK_RECORD_BASIC_RE;
-
-alter table RECORD
-   drop constraint FK_RECORD_FK_RECORD_BOOK;
-
-drop table ADMIN cascade constraints;
 
 drop table BASIC_READER cascade constraints;
 
@@ -24,44 +10,11 @@ drop table BOOK cascade constraints;
 
 drop table BOOKTYPE cascade constraints;
 
+drop table CONTROLLER cascade constraints;
+
 drop table RECORD cascade constraints;
 
 drop table WORKTYPE cascade constraints;
-
-/*==============================================================*/
-/* Table: ADMIN                                                 */
-/*==============================================================*/
-create table ADMIN 
-(
-   ID                   NUMBER(28)           not null,
-   ADCODE               VARCHAR2(32),
-   ADPASSWORD           VARCHAR2(255),
-   ADNAME               VARCHAR2(32),
-   ADPOST               VARCHAR2(100),
-   ADROLS               NUMBER(2),
-   constraint PK_ADMIN primary key (ID)
-);
-
-comment on table ADMIN is
-'管理员表';
-
-comment on column ADMIN.ID is
-'编号';
-
-comment on column ADMIN.ADCODE is
-'登录名';
-
-comment on column ADMIN.ADPASSWORD is
-'密码';
-
-comment on column ADMIN.ADNAME is
-'姓名';
-
-comment on column ADMIN.ADPOST is
-'职位';
-
-comment on column ADMIN.ADROLS is
-'权限';
 
 /*==============================================================*/
 /* Table: BASIC_READER                                          */
@@ -251,6 +204,41 @@ comment on column BOOKTYPE.EXPLAIN is
 '备注';
 
 /*==============================================================*/
+/* Table: CONTROLLER                                            */
+/*==============================================================*/
+create table CONTROLLER 
+(
+   ID                   NUMBER(28)           not null,
+   ADCODE               VARCHAR2(32),
+   ADPASSWORD           VARCHAR2(255),
+   ADNAME               VARCHAR2(32),
+   ADPOST               VARCHAR2(100),
+   ADROLS               NUMBER(2),
+   constraint PK_CONTROLLER primary key (ID)
+);
+
+comment on table CONTROLLER is
+'管理员表';
+
+comment on column CONTROLLER.ID is
+'编号';
+
+comment on column CONTROLLER.ADCODE is
+'登录名';
+
+comment on column CONTROLLER.ADPASSWORD is
+'密码';
+
+comment on column CONTROLLER.ADNAME is
+'姓名';
+
+comment on column CONTROLLER.ADPOST is
+'职位';
+
+comment on column CONTROLLER.ADROLS is
+'权限';
+
+/*==============================================================*/
 /* Table: RECORD                                                */
 /*==============================================================*/
 create table RECORD 
@@ -319,20 +307,4 @@ comment on column WORKTYPE.CODE is
 
 comment on column WORKTYPE.EXPLAIN is
 '备注';
-
-alter table BASIC_READER
-   add constraint FK_BASIC_RE_FK_BASIC__WORKTYPE foreign key (RDUNIT)
-      references WORKTYPE (ID);
-
-alter table BOOK
-   add constraint FK_BOOK_FK_BOOK_R_BOOKTYPE foreign key (TYPE)
-      references BOOKTYPE (ID);
-
-alter table RECORD
-   add constraint FK_RECORD_FK_RECORD_BASIC_RE foreign key (READID)
-      references BASIC_READER (ID);
-
-alter table RECORD
-   add constraint FK_RECORD_FK_RECORD_BOOK foreign key (BOOKID)
-      references BOOK (ID);
 
