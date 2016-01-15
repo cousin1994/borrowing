@@ -10,11 +10,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Booktype entity. @author MyEclipse Persistence Tools
+ * BookType entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "BOOKTYPE", schema = "BORROW")
-public class Booktype implements java.io.Serializable {
+@Table(name = "BOOK_TYPE", schema = "BORROW")
+public class BookType implements java.io.Serializable {
 
 	// Fields
 
@@ -27,11 +27,11 @@ public class Booktype implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Booktype() {
+	public BookType() {
 	}
 
 	/** full constructor */
-	public Booktype(BigDecimal fid, String name, String code, String explain) {
+	public BookType(BigDecimal fid, String name, String code, String explain) {
 		this.fid = fid;
 		this.name = name;
 		this.code = code;
