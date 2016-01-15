@@ -18,6 +18,10 @@ public class Controller implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8704199418213044453L;
 	private BigDecimal id;
 	private String adcode;
 	private String adpassword;

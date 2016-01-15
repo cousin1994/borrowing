@@ -21,6 +21,10 @@ public class Record implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2177668882285122116L;
 	private BigDecimal id;
 	private BigDecimal readid;
 	private BigDecimal bookid;

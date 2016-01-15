@@ -18,6 +18,10 @@ public class BookType implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2562126335244192996L;
 	private BigDecimal id;
 	private BigDecimal fid;
 	private String name;

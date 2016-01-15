@@ -22,6 +22,10 @@ public class BasicReader implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7873001268626169300L;
 	private BigDecimal id;
 	private BigDecimal rdcode;
 	private String rdpassword;
