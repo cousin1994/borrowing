@@ -13,15 +13,23 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * Book entity. @author MyEclipse Persistence Tools
  */
 @Entity
 @Table(name = "BOOK", schema = "BORROW")
+@Cache(usage =CacheConcurrencyStrategy.READ_WRITE)
 public class Book implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9027151969120287474L;
 	private BigDecimal id;
 	private String bname;
 	private String fauthor;
