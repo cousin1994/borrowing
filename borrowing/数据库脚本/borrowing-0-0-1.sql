@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     2016/1/11 2:43:02                            */
+/* Created on:     2016/1/15 16:22:00                           */
 /*==============================================================*/
 
 
@@ -8,13 +8,13 @@ drop table BASIC_READER cascade constraints;
 
 drop table BOOK cascade constraints;
 
-drop table BOOKTYPE cascade constraints;
+drop table BOOK_TYPE cascade constraints;
 
 drop table CONTROLLER cascade constraints;
 
 drop table RECORD cascade constraints;
 
-drop table WORKTYPE cascade constraints;
+drop table WORK_TYPE cascade constraints;
 
 /*==============================================================*/
 /* Table: BASIC_READER                                          */
@@ -170,37 +170,37 @@ comment on column BOOK.TYPE is
 '类别';
 
 comment on column BOOK.ISBORROWED is
-'是否借出';
+'状态';
 
 /*==============================================================*/
-/* Table: BOOKTYPE                                              */
+/* Table: BOOK_TYPE                                             */
 /*==============================================================*/
-create table BOOKTYPE 
+create table BOOK_TYPE 
 (
    ID                   NUMBER(28)           not null,
    FID                  NUMBER(28),
    NAME                 VARCHAR2(100),
    CODE                 VARCHAR2(100),
    EXPLAIN              VARCHAR2(500),
-   constraint PK_BOOKTYPE primary key (ID)
+   constraint PK_BOOK_TYPE primary key (ID)
 );
 
-comment on table BOOKTYPE is
+comment on table BOOK_TYPE is
 '图书类别表';
 
-comment on column BOOKTYPE.ID is
+comment on column BOOK_TYPE.ID is
 '编号';
 
-comment on column BOOKTYPE.FID is
+comment on column BOOK_TYPE.FID is
 '父节点';
 
-comment on column BOOKTYPE.NAME is
+comment on column BOOK_TYPE.NAME is
 '名称';
 
-comment on column BOOKTYPE.CODE is
+comment on column BOOK_TYPE.CODE is
 '称号';
 
-comment on column BOOKTYPE.EXPLAIN is
+comment on column BOOK_TYPE.EXPLAIN is
 '备注';
 
 /*==============================================================*/
@@ -278,33 +278,33 @@ comment on column RECORD.RENEW is
 '能否续借';
 
 /*==============================================================*/
-/* Table: WORKTYPE                                              */
+/* Table: WORK_TYPE                                             */
 /*==============================================================*/
-create table WORKTYPE 
+create table WORK_TYPE 
 (
    ID                   NUMBER(28)           not null,
    FID                  NUMBER(28),
    NAME                 VARCHAR2(100),
    CODE                 VARCHAR2(100),
    EXPLAIN              VARCHAR2(500),
-   constraint PK_WORKTYPE primary key (ID)
+   constraint PK_WORK_TYPE primary key (ID)
 );
 
-comment on table WORKTYPE is
+comment on table WORK_TYPE is
 '行业类别表';
 
-comment on column WORKTYPE.ID is
+comment on column WORK_TYPE.ID is
 '编号';
 
-comment on column WORKTYPE.FID is
+comment on column WORK_TYPE.FID is
 '父节点';
 
-comment on column WORKTYPE.NAME is
+comment on column WORK_TYPE.NAME is
 '名称';
 
-comment on column WORKTYPE.CODE is
+comment on column WORK_TYPE.CODE is
 '称号';
 
-comment on column WORKTYPE.EXPLAIN is
+comment on column WORK_TYPE.EXPLAIN is
 '备注';
 
