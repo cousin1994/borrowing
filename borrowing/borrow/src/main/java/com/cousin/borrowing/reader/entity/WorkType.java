@@ -10,14 +10,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Worktype entity. @author MyEclipse Persistence Tools
+ * WorkType entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "WORKTYPE", schema = "BORROW")
-public class Worktype implements java.io.Serializable {
+@Table(name = "WORK_TYPE", schema = "BORROW")
+public class WorkType implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3130227409952091336L;
 	private BigDecimal id;
 	private BigDecimal fid;
 	private String name;
@@ -27,11 +31,11 @@ public class Worktype implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Worktype() {
+	public WorkType() {
 	}
 
 	/** full constructor */
-	public Worktype(BigDecimal fid, String name, String code, String explain) {
+	public WorkType(BigDecimal fid, String name, String code, String explain) {
 		this.fid = fid;
 		this.name = name;
 		this.code = code;
