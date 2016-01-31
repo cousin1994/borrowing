@@ -1,29 +1,29 @@
-package com.cousin.borrowing.book.entity;
+package com.cousin.borrow.basic.entity;
 
-import java.math.BigDecimal;
+import static javax.persistence.GenerationType.SEQUENCE;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * BookType entity. @author MyEclipse Persistence Tools
+ * WorkType entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "BOOK_TYPE", schema = "BORROW")
-public class BookType implements java.io.Serializable {
+@Table(name = "WORK_TYPE", schema = "BORROW")
+public class WorkType implements java.io.Serializable {
 
 	// Fields
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2562126335244192996L;
-	private BigDecimal id;
-	private BigDecimal fid;
+	private static final long serialVersionUID = -1384577156193135331L;
+	private Long id;
+	private Long fid;
 	private String name;
 	private String code;
 	private String explain;
@@ -31,11 +31,11 @@ public class BookType implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public BookType() {
+	public WorkType() {
 	}
 
 	/** full constructor */
-	public BookType(BigDecimal fid, String name, String code, String explain) {
+	public WorkType(Long fid, String name, String code, String explain) {
 		this.fid = fid;
 		this.name = name;
 		this.code = code;
@@ -43,24 +43,24 @@ public class BookType implements java.io.Serializable {
 	}
 
 	// Property accessors
+	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Column(name = "ID", unique = true, nullable = false, precision = 28, scale = 0)
-	public BigDecimal getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@Column(name = "FID", precision = 28, scale = 0)
-	public BigDecimal getFid() {
+	public Long getFid() {
 		return this.fid;
 	}
 
-	public void setFid(BigDecimal fid) {
+	public void setFid(Long fid) {
 		this.fid = fid;
 	}
 

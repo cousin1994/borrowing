@@ -1,6 +1,5 @@
-package com.cousin.borrowing.book.entity;
+package com.cousin.borrow.basic.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +23,10 @@ public class Record implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2177668882285122116L;
-	private BigDecimal id;
-	private BigDecimal readid;
-	private BigDecimal bookid;
+	private static final long serialVersionUID = 5220250144900582191L;
+	private Long id;
+	private Long readid;
+	private Long bookid;
 	private Date begin;
 	private Date end;
 	private Short money;
@@ -40,7 +39,7 @@ public class Record implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Record(BigDecimal readid, BigDecimal bookid, Date begin, Date end,
+	public Record(Long readid, Long bookid, Date begin, Date end,
 			Short money, Byte renew) {
 		this.readid = readid;
 		this.bookid = bookid;
@@ -51,33 +50,33 @@ public class Record implements java.io.Serializable {
 	}
 
 	// Property accessors
+	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Column(name = "ID", unique = true, nullable = false, precision = 28, scale = 0)
-	public BigDecimal getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@Column(name = "READID", precision = 28, scale = 0)
-	public BigDecimal getReadid() {
+	public Long getReadid() {
 		return this.readid;
 	}
 
-	public void setReadid(BigDecimal readid) {
+	public void setReadid(Long readid) {
 		this.readid = readid;
 	}
 
 	@Column(name = "BOOKID", precision = 28, scale = 0)
-	public BigDecimal getBookid() {
+	public Long getBookid() {
 		return this.bookid;
 	}
 
-	public void setBookid(BigDecimal bookid) {
+	public void setBookid(Long bookid) {
 		this.bookid = bookid;
 	}
 

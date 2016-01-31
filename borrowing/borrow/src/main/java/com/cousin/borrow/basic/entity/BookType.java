@@ -1,6 +1,5 @@
-package com.cousin.borrowing.reader.entity;
+package com.cousin.borrow.basic.entity;
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +9,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * WorkType entity. @author MyEclipse Persistence Tools
+ * BookType entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "WORK_TYPE", schema = "BORROW")
-public class WorkType implements java.io.Serializable {
+@Table(name = "BOOK_TYPE", schema = "BORROW")
+public class BookType implements java.io.Serializable {
 
 	// Fields
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3130227409952091336L;
-	private BigDecimal id;
-	private BigDecimal fid;
+	private static final long serialVersionUID = 53484748860033913L;
+	private Long id;
+	private Long parentid;
 	private String name;
 	private String code;
 	private String explain;
@@ -31,37 +30,37 @@ public class WorkType implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public WorkType() {
+	public BookType() {
 	}
 
 	/** full constructor */
-	public WorkType(BigDecimal fid, String name, String code, String explain) {
-		this.fid = fid;
+	public BookType(Long parentid, String name, String code, String explain) {
+		this.parentid = parentid;
 		this.name = name;
 		this.code = code;
 		this.explain = explain;
 	}
 
 	// Property accessors
+	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Column(name = "ID", unique = true, nullable = false, precision = 28, scale = 0)
-	public BigDecimal getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Column(name = "FID", precision = 28, scale = 0)
-	public BigDecimal getFid() {
-		return this.fid;
+	@Column(name = "PARENTID", precision = 28, scale = 0)
+	public Long getParentid() {
+		return this.parentid;
 	}
 
-	public void setFid(BigDecimal fid) {
-		this.fid = fid;
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
 	}
 
 	@Column(name = "NAME", length = 100)
