@@ -284,8 +284,7 @@ public class Userrole implements java.io.Serializable {
 		this.phone = phone;
 	}
 
-	@Lob
-	@Column(name = "REMARKS")
+	@Column(name = "REMARKS",length = 1000)
 	public String getRemarks() {
 		return this.remarks;
 	}
