@@ -1,120 +1,18 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     2016/1/15 16:22:00                           */
+/* Created on:     2016/2/1 3:55:06                             */
 /*==============================================================*/
 
-
-drop table BASIC_READER cascade constraints;
 
 drop table BOOK cascade constraints;
 
 drop table BOOK_TYPE cascade constraints;
 
-drop table CONTROLLER cascade constraints;
-
 drop table RECORD cascade constraints;
 
+drop table USERROLE cascade constraints;
+
 drop table WORK_TYPE cascade constraints;
-
-/*==============================================================*/
-/* Table: BASIC_READER                                          */
-/*==============================================================*/
-create table BASIC_READER 
-(
-   ID                   NUMBER(28)           not null,
-   RDCODE               NUMBER(28),
-   RDPASSWORD           VARCHAR2(120)        default '123456'
-      constraint CKC_RDPASSWORD_BASIC_RE check (RDPASSWORD is null or (RDPASSWORD >= '6')),
-   RDNAME               VARCHAR2(100),
-   RDTYPE               NUMBER(2),
-   RDSTATE              NUMBER(2),
-   RDVIOLATE            NUMBER(2)            default 0,
-   RDAGGREGATE          NUMBER(10),
-   RDCERTIFY            VARCHAR2(255),
-   RDLIB                VARCHAR2(32),
-   RDBED                DATE,
-   RDENDD               DATE,
-   RDUNIT               NUMBER(28),
-   RDADDRESS            VARCHAR2(255),
-   RDNATION             VARCHAR2(32),
-   RDJG                 VARCHAR2(32),
-   RDPOSTCD             NUMBER(32),
-   RDBIRTHDAY           DATE,
-   RDAGE                NUMBER(32),
-   RDEMAIL              VARCHAR2(255),
-   RDPHONE              NUMBER(32),
-   RDREMARKS            CLOB,
-   constraint PK_BASIC_READER primary key (ID)
-);
-
-comment on table BASIC_READER is
-'读者表';
-
-comment on column BASIC_READER.ID is
-'编号';
-
-comment on column BASIC_READER.RDCODE is
-'借阅证号';
-
-comment on column BASIC_READER.RDPASSWORD is
-'密码';
-
-comment on column BASIC_READER.RDNAME is
-'姓名';
-
-comment on column BASIC_READER.RDTYPE is
-'登录策略（0--pc，1--手机）';
-
-comment on column BASIC_READER.RDSTATE is
-'当前状态(0--有效，1--无效）';
-
-comment on column BASIC_READER.RDVIOLATE is
-'违约状况(0--正常，1--违约）';
-
-comment on column BASIC_READER.RDAGGREGATE is
-'累计借书';
-
-comment on column BASIC_READER.RDCERTIFY is
-'身份证号码';
-
-comment on column BASIC_READER.RDLIB is
-'开户馆';
-
-comment on column BASIC_READER.RDBED is
-'证启用日期';
-
-comment on column BASIC_READER.RDENDD is
-'证终止日期';
-
-comment on column BASIC_READER.RDUNIT is
-'读者单位';
-
-comment on column BASIC_READER.RDADDRESS is
-'住址';
-
-comment on column BASIC_READER.RDNATION is
-'民族';
-
-comment on column BASIC_READER.RDJG is
-'籍贯';
-
-comment on column BASIC_READER.RDPOSTCD is
-'邮编';
-
-comment on column BASIC_READER.RDBIRTHDAY is
-'出生日期';
-
-comment on column BASIC_READER.RDAGE is
-'年龄';
-
-comment on column BASIC_READER.RDEMAIL is
-'email';
-
-comment on column BASIC_READER.RDPHONE is
-'手机';
-
-comment on column BASIC_READER.RDREMARKS is
-'备注';
 
 /*==============================================================*/
 /* Table: BOOK                                                  */
@@ -129,15 +27,36 @@ create table BOOK
    TRANSLATOR           VARCHAR2(32),
    PUBLISHER            VARCHAR2(32),
    PUBLSHDATE           DATE,
-   INTRO                CLOB,
    TYPE                 NUMBER(28),
    ISBORROWED           NUMBER(1),
+   SSH                  VARCHAR2(100),
+   TMH                  VARCHAR2(50),
+   RETURNDATE           DATE,
+   ORGLIB               VARCHAR2(500),
+   CURLIB               VARCHAR2(500),
+   CURLOCAL             VARCHAR2(1000),
+   CIRTYPE              NUMBER(2),
+   TOTALLOANNUM         NUMBER(20),
+   TOTALRENEWNUM        NUMBER(20),
+   PAGE                 NUMBER(10),
+   PUBLISHERLOCAL       VARCHAR2(500),
+   CD                   NUMBER(2),
+   PHOTO                VARCHAR2(1000),
+   INTRO                VARCHAR2(1000),
    constraint PK_BOOK primary key (ID)
-);
+         using index 
+     tablespace BORROW
+     pctfree 10
+     initrans 2
+     maxtrans 255
+)
+tablespace BORROW
+  pctfree 10
+  initrans 1
+  maxtrans 255;
 
 comment on table BOOK is
-'书本表
-';
+'书本表';
 
 comment on column BOOK.ID is
 '编号';
@@ -163,14 +82,53 @@ comment on column BOOK.PUBLISHER is
 comment on column BOOK.PUBLSHDATE is
 '出版日期';
 
-comment on column BOOK.INTRO is
-'简介';
-
 comment on column BOOK.TYPE is
 '类别';
 
 comment on column BOOK.ISBORROWED is
-'状态';
+'馆藏状态';
+
+comment on column BOOK.SSH is
+'索书号';
+
+comment on column BOOK.TMH is
+'条码号';
+
+comment on column BOOK.RETURNDATE is
+'应还时间';
+
+comment on column BOOK.ORGLIB is
+'文献所属馆';
+
+comment on column BOOK.CURLIB is
+'所在馆';
+
+comment on column BOOK.CURLOCAL is
+'所在馆位置';
+
+comment on column BOOK.CIRTYPE is
+'流通类型';
+
+comment on column BOOK.TOTALLOANNUM is
+'借阅次数';
+
+comment on column BOOK.TOTALRENEWNUM is
+'续借次数';
+
+comment on column BOOK.PAGE is
+'页数';
+
+comment on column BOOK.PUBLISHERLOCAL is
+'出版地';
+
+comment on column BOOK.CD is
+'是否有光盘';
+
+comment on column BOOK.PHOTO is
+'图片';
+
+comment on column BOOK.INTRO is
+'简介';
 
 /*==============================================================*/
 /* Table: BOOK_TYPE                                             */
@@ -178,12 +136,21 @@ comment on column BOOK.ISBORROWED is
 create table BOOK_TYPE 
 (
    ID                   NUMBER(28)           not null,
-   FID                  NUMBER(28),
+   PARENTID             NUMBER(28),
    NAME                 VARCHAR2(100),
    CODE                 VARCHAR2(100),
    EXPLAIN              VARCHAR2(500),
    constraint PK_BOOK_TYPE primary key (ID)
-);
+         using index 
+     tablespace BORROW
+     pctfree 10
+     initrans 2
+     maxtrans 255
+)
+tablespace BORROW
+  pctfree 10
+  initrans 1
+  maxtrans 255;
 
 comment on table BOOK_TYPE is
 '图书类别表';
@@ -191,7 +158,7 @@ comment on table BOOK_TYPE is
 comment on column BOOK_TYPE.ID is
 '编号';
 
-comment on column BOOK_TYPE.FID is
+comment on column BOOK_TYPE.PARENTID is
 '父节点';
 
 comment on column BOOK_TYPE.NAME is
@@ -202,41 +169,6 @@ comment on column BOOK_TYPE.CODE is
 
 comment on column BOOK_TYPE.EXPLAIN is
 '备注';
-
-/*==============================================================*/
-/* Table: CONTROLLER                                            */
-/*==============================================================*/
-create table CONTROLLER 
-(
-   ID                   NUMBER(28)           not null,
-   ADCODE               VARCHAR2(32),
-   ADPASSWORD           VARCHAR2(255),
-   ADNAME               VARCHAR2(32),
-   ADPOST               VARCHAR2(100),
-   ADROLS               NUMBER(2),
-   constraint PK_CONTROLLER primary key (ID)
-);
-
-comment on table CONTROLLER is
-'管理员表';
-
-comment on column CONTROLLER.ID is
-'编号';
-
-comment on column CONTROLLER.ADCODE is
-'登录名';
-
-comment on column CONTROLLER.ADPASSWORD is
-'密码';
-
-comment on column CONTROLLER.ADNAME is
-'姓名';
-
-comment on column CONTROLLER.ADPOST is
-'职位';
-
-comment on column CONTROLLER.ADROLS is
-'权限';
 
 /*==============================================================*/
 /* Table: RECORD                                                */
@@ -251,7 +183,16 @@ create table RECORD
    MONEY                NUMBER(3),
    RENEW                NUMBER(2),
    constraint PK_RECORD primary key (ID)
-);
+         using index 
+     tablespace BORROW
+     pctfree 10
+     initrans 2
+     maxtrans 255
+)
+tablespace BORROW
+  pctfree 10
+  initrans 1
+  maxtrans 255;
 
 comment on table RECORD is
 '借阅记录';
@@ -278,6 +219,119 @@ comment on column RECORD.RENEW is
 '能否续借';
 
 /*==============================================================*/
+/* Table: USERROLE                                              */
+/*==============================================================*/
+create table USERROLE 
+(
+   ID                   NUMBER(28)           not null,
+   CODE                 NUMBER(28),
+   PASSWORD             VARCHAR2(120)        default '123456',
+   NAME                 VARCHAR2(100),
+   TYPE                 NUMBER(2),
+   STATE                NUMBER(2),
+   VIOLATE              NUMBER(2)            default 0,
+   AGGREGATE            NUMBER(10),
+   CERTIFY              VARCHAR2(255),
+   LIB                  VARCHAR2(32),
+   BED                  DATE,
+   ENDD                 DATE,
+   UNIT                 NUMBER(28),
+   ADDRESS              VARCHAR2(255),
+   NATION               VARCHAR2(32),
+   JG                   VARCHAR2(32),
+   POSTCD               NUMBER(32),
+   BIRTHDAY             DATE,
+   AGE                  NUMBER(32),
+   EMAIL                VARCHAR2(255),
+   PHONE                NUMBER(32),
+   ROLE                 NUMBER(2),
+   REMARKS              VARCHAR2(1000),
+   constraint PK_USERROLE primary key (ID)
+         using index 
+     tablespace BORROW
+     pctfree 10
+     initrans 2
+     maxtrans 255,
+   constraint CKC_PASSWORD_USERROLE check (PASSWORD is null or (PASSWORD >= '6'))
+)
+tablespace BORROW
+  pctfree 10
+  initrans 1
+  maxtrans 255;
+
+comment on table USERROLE is
+'用户表';
+
+comment on column USERROLE.ID is
+'编号';
+
+comment on column USERROLE.CODE is
+'借阅证号(即登录号)';
+
+comment on column USERROLE.PASSWORD is
+'密码';
+
+comment on column USERROLE.NAME is
+'姓名';
+
+comment on column USERROLE.TYPE is
+'登录策略（0--pc，1--手机）';
+
+comment on column USERROLE.STATE is
+'当前状态(0--有效，1--无效）';
+
+comment on column USERROLE.VIOLATE is
+'违约状况(0--正常，1--违约）';
+
+comment on column USERROLE.AGGREGATE is
+'累计借书';
+
+comment on column USERROLE.CERTIFY is
+'身份证号码';
+
+comment on column USERROLE.LIB is
+'开户馆';
+
+comment on column USERROLE.BED is
+'证启用日期';
+
+comment on column USERROLE.ENDD is
+'证终止日期';
+
+comment on column USERROLE.UNIT is
+'单位';
+
+comment on column USERROLE.ADDRESS is
+'住址';
+
+comment on column USERROLE.NATION is
+'民族';
+
+comment on column USERROLE.JG is
+'籍贯';
+
+comment on column USERROLE.POSTCD is
+'邮编';
+
+comment on column USERROLE.BIRTHDAY is
+'出生日期';
+
+comment on column USERROLE.AGE is
+'年龄';
+
+comment on column USERROLE.EMAIL is
+'email';
+
+comment on column USERROLE.PHONE is
+'手机';
+
+comment on column USERROLE.ROLE is
+'登录角色(0--超级管理员，1--系统管理员，2--普通用户)';
+
+comment on column USERROLE.REMARKS is
+'备注';
+
+/*==============================================================*/
 /* Table: WORK_TYPE                                             */
 /*==============================================================*/
 create table WORK_TYPE 
@@ -288,7 +342,16 @@ create table WORK_TYPE
    CODE                 VARCHAR2(100),
    EXPLAIN              VARCHAR2(500),
    constraint PK_WORK_TYPE primary key (ID)
-);
+         using index 
+     tablespace BORROW
+     pctfree 10
+     initrans 2
+     maxtrans 255
+)
+tablespace BORROW
+  pctfree 10
+  initrans 1
+  maxtrans 255;
 
 comment on table WORK_TYPE is
 '行业类别表';
