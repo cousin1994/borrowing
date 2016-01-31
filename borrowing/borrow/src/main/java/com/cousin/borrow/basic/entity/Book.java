@@ -167,8 +167,7 @@ public class Book implements java.io.Serializable {
 		this.publshdate = publshdate;
 	}
 
-	@Lob
-	@Column(name = "INTRO")
+	@Column(name = "INTRO"，length = 1000)
 	public String getIntro() {
 		return this.intro;
 	}
