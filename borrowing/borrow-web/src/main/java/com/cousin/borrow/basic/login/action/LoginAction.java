@@ -3,9 +3,13 @@ package com.cousin.borrow.basic.login.action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.cousin.borrow.basic.entity.Userrole;
+import com.cousin.borrow.basic.service.UserroleService;
+import com.cousin.util.struts2.BasicSuperAction;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -19,11 +23,40 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({
 	
 })
-public class LoginAction extends ActionSupport {
+public class LoginAction<Userrole> extends BasicSuperAction<Userrole>  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7482189444239508321L;
 
+	@Autowired
+	private UserroleService userroleService;
+	
+	private String Code;
+	
+	private String password;
+
+	
+	public String getCode() {
+		return Code;
+	}
+
+	public void setCode(String code) {
+		Code = code;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String login(){
+		Userrole userrole = userroleService.findbyUser(Code, password);
+		return null;
+	}
+	
 }

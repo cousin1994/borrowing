@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,7 +27,7 @@ public class Userrole implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -8029096474590239504L;
 	private Long id;
-	private Long code;
+	private String code;
 	private String password;
 	private String name;
 	private Byte type;
@@ -58,7 +57,7 @@ public class Userrole implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Userrole(Long code, String password, String name, Byte type,
+	public Userrole(String code, String password, String name, Byte type,
 			Byte state, Byte violate, Long aggregate, String certify,
 			String lib, Date bed, Date endd, Long unit, String address,
 			String nation, String jg, Long postcd, Date birthday,
@@ -101,12 +100,12 @@ public class Userrole implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "CODE", precision = 28, scale = 0)
-	public Long getCode() {
+	@Column(name = "CODE", length = 500)
+	public String getCode() {
 		return this.code;
 	}
 
-	public void setCode(Long code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

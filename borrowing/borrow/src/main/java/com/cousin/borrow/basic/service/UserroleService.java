@@ -47,5 +47,16 @@ public class UserroleService {
 		userroleDao.delete(list);
 		return true;
 	}
+
+	/**
+	 * 根据用户名，密码查找用户实体，并返回
+	 * @param Code
+	 * @param password
+	 * @return
+	 */
+	public Userrole findbyUser(String Code,String password){
+		Userrole user = userroleDao.findByCodeAndPassword(Code, password);
+		return user;
+	}
 	
 }

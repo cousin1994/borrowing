@@ -8,5 +8,12 @@ import com.cousin.util.data.jpa.repository.BaseJpaRepository;
 * @version 创建时间： 2016年1月31日 上午5:42:34
 */
 public interface UserroleDao extends BaseJpaRepository<Userrole, Long> {
+	
+	/**
+	 * 通过用户名查找实体类
+	 * @param Code
+	 * @return
+	 */
+	public Userrole findByCodeAndPassword(String Code,String Password);
 
 }
