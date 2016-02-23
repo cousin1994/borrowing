@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import com.cousin.borrow.basic.entity.Userrole;
 import com.cousin.borrow.basic.service.UserroleService;
 import com.cousin.util.struts2.BasicSuperAction;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
 * @author 戴嘉诚 E-mail:a773807943@gmail.com
@@ -23,7 +22,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({
 	
 })
-public class LoginAction<Userrole> extends BasicSuperAction<Userrole>  {
+public class LoginAction extends BasicSuperAction<Userrole> {
 
 	/**
 	 * 
@@ -58,5 +57,10 @@ public class LoginAction<Userrole> extends BasicSuperAction<Userrole>  {
 		Userrole userrole = userroleService.findbyUser(Code, password);
 		return null;
 	}
+	
+	public String list(){
+		return null;
+	}
+	
 	
 }

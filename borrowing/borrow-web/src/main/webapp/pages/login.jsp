@@ -76,6 +76,7 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/login.js"></script>
     <script src="../js/jquery.backstretch.min.js"></script>
+    <script src="../bower_components/layer/layer.js" ></script>
     <!--js结束-->
     
     </body>

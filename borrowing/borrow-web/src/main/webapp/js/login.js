@@ -1,6 +1,5 @@
 
 jQuery(document).ready(function() {
-	
     /*
         Fullscreen background
     */
@@ -31,10 +30,25 @@ jQuery(document).ready(function() {
     
     $('.login-form').on('submit', function(e) {
     	
+/*    	$(this).find('input[type="text"], textarea').each(
+    			function(){
+    				if($(this).val()==""){
+    					$(this).addClass('input-error');
+    					layer.alert('请输入用户账号！',{icon:5});
+    					e.preventDefault();
+    				}
+    			}
+    	);*/
+    	
     	$(this).find('input[type="text"], input[type="password"], textarea').each(function(){
-    		if( $(this).val() == "" ) {
+    		if( $('#form-username').val() == "" ) {
     			e.preventDefault();
-    			$(this).addClass('input-error');
+    			$('#form-username').addClass('input-error');
+    			layer.alert('请输入用户账号！',{icon:5});
+    		}else if( $('#form-password').val() == "" ) {
+    			e.preventDefault();
+    			$('#form-password').addClass('input-error');
+    			layer.alert('请输入密码！',{icon:5});
     		}
     		else {
     			$(this).removeClass('input-error');
