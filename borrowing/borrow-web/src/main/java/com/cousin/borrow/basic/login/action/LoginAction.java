@@ -22,7 +22,7 @@ import com.cousin.util.struts2.BasicSuperAction;
 @Namespace("/")
 @Results({
 	@Result(name="input", location="/login.jsp"),
-	@Result(name="admin", location="/pages/index.html")
+	@Result(name="admin", location="/WEB-INF/content/admin/admin.jsp")
 })
 public class LoginAction extends BasicSuperAction<Userrole> {
 
@@ -41,7 +41,18 @@ public class LoginAction extends BasicSuperAction<Userrole> {
 	private String msg;
 
 	
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	public String loginout(){
+		return INPUT;
+	}
 	
+	/**
+	 * 登录系统
+	 * @return
+	 */
 	public String login(){
 		Userrole userrole = userroleService.findbyUser(Code, password);
 		if(userrole == null){
