@@ -2,6 +2,7 @@ package com.cousin.borrow.basic.login.action;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,9 +19,10 @@ import com.cousin.util.struts2.BasicSuperAction;
 @Controller
 @Scope("prototype")
 @ParentPackage("my-default")
-@Namespace("/borrow")
+@Namespace("/")
 @Results({
-	
+	@Result(name="input", location="/login.jsp"),
+	@Result(name="admin", location="/pages/index.html")
 })
 public class LoginAction extends BasicSuperAction<Userrole> {
 
@@ -35,32 +37,50 @@ public class LoginAction extends BasicSuperAction<Userrole> {
 	private String Code;
 	
 	private String password;
+	
+	private String msg;
 
 	
-	public String getCode() {
-		return Code;
-	}
-
-	public void setCode(String code) {
-		Code = code;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
 	public String login(){
 		Userrole userrole = userroleService.findbyUser(Code, password);
-		return null;
+		if(userrole == null){
+			msg = "帐号或密码错误，重新输入";
+			reqeust.setAttribute("msg", msg);
+			return INPUT;
+		}else if(userrole.getRole()==2){//普通用户
+			return "user";
+		}else{//管理员
+			return "admin";
+		}
 	}
 	
 	public String list(){
 		return null;
 	}
 	
+	public String getMsg() {
+		return msg;
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
+	public String getCode() {
+		return Code;
+	}
+	
+	public void setCode(String code) {
+		Code = code;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 }

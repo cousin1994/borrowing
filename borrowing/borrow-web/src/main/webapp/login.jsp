@@ -27,15 +27,16 @@
         
         <!--网站 或者 触摸屏 图标：开始-->
         <link rel="shortcut icon" href="../images/FaviconIcons/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144*144" href="../images/FaviconIcons/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114*114" href="../images/FaviconIcons/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72*72" href="../images/FaviconIcons/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="57*57" href="../images/FaviconIcons/apple-touch-icon-57-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144*144" href="/images/FaviconIcons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114*114" href="/images/FaviconIcons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72*72" href="/images/FaviconIcons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="57*57" href="/images/FaviconIcons/apple-touch-icon-57-precomposed.png">
         <!--网站 或者 触摸屏 图标：结束-->
 
         <title>图书借阅系统登录界面</title>
     </head>
 	<body>
+	<input type="hidden"  name="msg" id="msg" value="${msg}">
     <!-- 顶端目录 -->
     <div class="top-content" >
     	<div class="inner-bg">
@@ -54,14 +55,14 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                        	<form role="form" action="pages/index.html" method="post" class="login-form">
+                        	<form role="form" action="/login!login.action" method="post" class="login-form">
                             	<div class="form-group">
                                 	<label class="sr-only" for="form-username">Username</label>
-                                    <input type="text" name="form-username" placeholder="请输入用户名..." class="form-username form-control" id="form-username">
+                                    <input type="text" name="Code" placeholder="请输入用户名..." class="form-username form-control" id="form-username">
                                  </div>
                                  <div class="form-group">
                                  	<label class="sr-only" for="form-password">Password</label>
-                                    <input type="password" name="form-password" placeholder="请输入密码..." class="form-password form-control" id="form-password">
+                                    <input type="password" name="password" placeholder="请输入密码..." class="form-password form-control" id="form-password">
                                  </div>
                                  <button type="submit" class="btn">登录</button>
                             </form>
