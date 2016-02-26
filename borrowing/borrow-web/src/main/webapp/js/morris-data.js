@@ -36,7 +36,7 @@ $(function() {
         xkey: 'period',
         ykeys: ['进馆人数'],
         labels: [ '进馆人数'],
-        pointSize: 2,
+        pointSize: 3,
         hideHover: 'auto',
         resize: true
     });
