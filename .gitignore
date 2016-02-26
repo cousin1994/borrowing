@@ -19,6 +19,7 @@ local.properties
 *project
 *settings
 *target
+.prefs
 # External tool builders
 .externalToolBuilders/
 
