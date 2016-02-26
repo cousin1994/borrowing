@@ -11,6 +11,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
+*.prefs
 local.properties
 .classpath
 .settings/
@@ -19,7 +20,7 @@ local.properties
 *project
 *settings
 *target
-/*.prefs
+
 # External tool builders
 .externalToolBuilders/
 
