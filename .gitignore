@@ -11,7 +11,6 @@ tmp/
 *.bak
 *.swp
 *~.nib
-*.prefs
 local.properties
 .classpath
 .settings/
@@ -218,3 +217,4 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.prefs
+*.classpath
