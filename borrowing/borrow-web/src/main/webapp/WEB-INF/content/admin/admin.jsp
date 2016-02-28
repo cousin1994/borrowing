@@ -66,7 +66,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
             	<li>
-            		<h5>欢迎${username}登录</h5>
+            		<h5>欢迎登录</h5>
             	</li>
                 <!-- 消息按钮，跳到消息窗口 -->
                 <li>
@@ -128,7 +128,7 @@
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> 读者管理</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 图书查询<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> 图书查询<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             	<li>
                                 	<a href="#">已经借出的图书</a>
@@ -219,9 +219,9 @@
 		
         <div id="page-wrapper">
 		<div id="myAlert" class="alert alert-danger col-lg-offset-9 col-lg-3 fade in">
-			   				<a href="#" class="close" data-dismiss="alert">&times;</a>
-			   				有 <a href="javascript:logout();"><strong>12条！</strong></a>未读消息。
-                	</div> 
+			   	<a href="#" class="close" data-dismiss="alert">&times;</a>
+			   	有 <a href="javascript:logout();"><strong>12条！</strong></a>未读消息。
+         </div> 
             <div class="row">
                 <div class="col-lg-12">
                     	<h1 class="page-header">控制台</h1>
@@ -350,22 +350,7 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- 实时图表 -->
                     <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Moving Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
@@ -515,17 +500,6 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
@@ -559,15 +533,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     
-        <!-- Flot Charts JavaScript -->
-    <script src="../bower_components/flot/excanvas.min.js"></script>
-    <script src="../bower_components/flot/jquery.flot.js"></script>
-    <script src="../bower_components/flot/jquery.flot.pie.js"></script>
-    <script src="../bower_components/flot/jquery.flot.resize.js"></script>
-    <script src="../bower_components/flot/jquery.flot.time.js"></script>
-    <script src="../bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
- <!--    <script src="../js/flot-data.js"></script> -->
-
 </body>
 
 </html>
