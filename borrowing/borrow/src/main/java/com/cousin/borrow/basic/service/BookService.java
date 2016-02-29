@@ -55,6 +55,7 @@ public class BookService {
 	 * @return
 	 */
 	public Page<Book> findPage(Map<String,Object> searchParam,int PageNumber, int pageSize,Order...orders) {
-		return bookDao.findAll(searchParam, PageNumber, pageSize, orders);
+		Page<Book> p = bookDao.findAll(searchParam, PageNumber, pageSize, orders);
+		return p;
 	}
 }

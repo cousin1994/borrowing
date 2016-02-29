@@ -1,15 +1,22 @@
 package com.cousin.borrow.basic.book.action;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
 import com.cousin.borrow.basic.service.BookService;
 import com.cousin.util.struts2.BasicSuperAction;
+import com.cousin.util.struts2.ServletUtils;
+import com.cousin.borrow.basic.entity.Book;
 
 /**
  *@author 戴嘉诚 E-mail:a773807943@gmail.com
@@ -22,7 +29,7 @@ import com.cousin.util.struts2.BasicSuperAction;
 @Results({
 	@Result(name=BasicSuperAction.RELOAD , location = "book.action" , type="redirect")
 })
-public class BookAction<Book> extends BasicSuperAction<Book> {
+public class BookAction extends BasicSuperAction<Book> {
 
 	/**
 	 * 
@@ -35,7 +42,15 @@ public class BookAction<Book> extends BasicSuperAction<Book> {
 	@Override
 	public String list() throws Exception {
 		//前端页面过滤条件设置
-		return null;
+		Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(reqeust, "search_");
+		Order mOrder = new Order(Direction.ASC, "bname");
+		this.page = bookService.findPage(searchParam, pageNumber, pageSize, mOrder);
+		Iterator<Book> it = page.iterator();
+		while (it.hasNext()) {
+			Book book = (Book) it.next();
+			System.out.println(book.getId());
+		}
+		return SUCCESS;
 	}
 
 }
