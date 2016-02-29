@@ -1,14 +1,19 @@
 package com.cousin.borrow.basic.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.cousin.borrow.basic.dao.BookDao;
 import com.cousin.borrow.basic.entity.Book;
+import com.cousin.util.data.jpa.repository.BaseJpaSupportRepository;
 
 /**
 * @author 戴嘉诚 E-mail:a773807943@gmail.com
