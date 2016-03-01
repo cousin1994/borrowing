@@ -109,7 +109,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
+                            <a href="javascript:location.reload();"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
                         </li>
                         <li><a href="#"><em class="fa fa-book"></em> 图书管理<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
@@ -117,7 +117,7 @@
                                     <a href="flot.html">修改图书状态</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">查看图书信息</a>
+                                    <a href="/book/book!list.action">查看图书信息</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

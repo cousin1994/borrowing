@@ -42,16 +42,10 @@ public class BookAction extends BasicSuperAction<Book> {
 	@Override
 	public String list() throws Exception {
 		//前端页面过滤条件设置
-		Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(reqeust, "search_");
-		searchParam.put("EQ_bname", 11);
-		searchParam.put("NEQ_fauthor", 2);
-		Order mOrder = new Order(Direction.ASC, "bname");
-		this.page = bookService.findPage(searchParam, pageNumber, pageSize, mOrder);
-		Iterator<Book> it = page.iterator();
-		while (it.hasNext()) {
-			Book book = (Book) it.next();
-			System.out.println(book.getId());
-		}
+		//Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(reqeust, "search_");
+		//Order mOrder = new Order(Direction.ASC, "bname");
+		//this.page = bookService.findPage(searchParam, pageNumber, pageSize, mOrder);
+		this.page = bookService.findPage(pageNumber, pageSize);
 		return SUCCESS;
 	}
 

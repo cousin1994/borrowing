@@ -7,12 +7,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 
 import com.cousin.borrow.basic.dao.BookDao;
 import com.cousin.borrow.basic.entity.Book;
+import com.cousin.borrow.basic.service.BookService;
 
 import base.AbstractJunit4SpringContextTests;
 
@@ -25,12 +27,28 @@ public class BookActionTest extends AbstractJunit4SpringContextTests {
 	@Resource
 	private BookDao bookDao;
 	
+	@Autowired
+	private BookService bookService;
+	
 	@Test
 	public void FindAllTest(){
 		Map<String,Object> m = new HashMap<String,Object>();
 		m.put("EQ_bname", 11);
-		Order mOrder = new Order(Direction.ASC, "ID ");
-		Page<Book> p = bookDao.findAll(m, 0, 20, null);
+		Order mOrder = new Order(Direction.ASC, "id");
+		Page<Book> p = bookDao.findAll(m, 0, 20, mOrder);
+		Iterator<Book> it = p.iterator();
+		while (it.hasNext()) {
+			Book book = (Book) it.next();
+			System.out.println(book.getId());
+		}
+	}
+	
+	@Test
+	public void bookServiceTest(){
+		Map<String,Object> m = new HashMap<String,Object>();
+		m.put("EQ_bname", 11);
+		Order mOrder = new Order(Direction.ASC, "id");
+		Page<Book> p = bookService.findPageBycondicio(m, 0, 20, mOrder);
 		Iterator<Book> it = p.iterator();
 		while (it.hasNext()) {
 			Book book = (Book) it.next();
