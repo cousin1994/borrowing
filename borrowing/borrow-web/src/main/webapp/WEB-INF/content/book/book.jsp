@@ -114,7 +114,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="javascript:location.reload();"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
+                            <a href="/admin/admin!list.action"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
                         </li>
                         <li><a href="#"><em class="fa fa-book"></em> 图书管理<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
@@ -234,7 +234,7 @@
             		<form class="form-inline" action="/book/book!list.action">
 							  <div class="form-group">
 								    <label for="publisherlaber">出版社</label>
-								    <s:textfield cssClass="form-control" id="publisherinput" name="search_LIKE_publisher" placeholder="请输入出版社"> </s:textfield>
+								    <input class="form-control" id="publisherinput" name="search_LIKE_publisher" placeholder="请输入出版社">
 							  </div>
 							  <div class="form-group">
 								    <label for="authorlaber">作者</label>
@@ -309,6 +309,9 @@
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    
+    <!-- layer javaScript -->
+    <script src="/bower_components/layer/layer.js" ></script>
     
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
