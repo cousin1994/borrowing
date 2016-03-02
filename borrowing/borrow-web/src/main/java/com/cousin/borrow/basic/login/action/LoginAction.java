@@ -57,7 +57,7 @@ public class LoginAction extends BasicSuperAction<Userrole> {
 		Userrole userrole = userroleService.findbyUser(Code, password);
 		if(userrole == null){
 			msg = "帐号或密码错误，重新输入";
-			reqeust.setAttribute("msg", msg);
+			request.setAttribute("msg", msg);
 			return INPUT;
 		}else if(userrole.getRole()==2){//普通用户
 			return "user";

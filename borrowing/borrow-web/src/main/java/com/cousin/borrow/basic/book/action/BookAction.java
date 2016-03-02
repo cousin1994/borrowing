@@ -1,6 +1,6 @@
 package com.cousin.borrow.basic.book.action;
 
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Namespace;
@@ -9,14 +9,12 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
+import com.cousin.borrow.basic.entity.Book;
 import com.cousin.borrow.basic.service.BookService;
 import com.cousin.util.struts2.BasicSuperAction;
 import com.cousin.util.struts2.ServletUtils;
-import com.cousin.borrow.basic.entity.Book;
 
 /**
  *@author 戴嘉诚 E-mail:a773807943@gmail.com
@@ -42,10 +40,9 @@ public class BookAction extends BasicSuperAction<Book> {
 	@Override
 	public String list() throws Exception {
 		//前端页面过滤条件设置
-		//Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(reqeust, "search_");
-		//Order mOrder = new Order(Direction.ASC, "bname");
-		//this.page = bookService.findPage(searchParam, pageNumber, pageSize, mOrder);
-		this.page = bookService.findPage(pageNumber, pageSize);
+		Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
+		List<Book> list = bookService.findByCodicio(searchParam);
+		request.setAttribute("list", list);
 		return SUCCESS;
 	}
 

@@ -230,6 +230,24 @@
             </div>
             <!-- /.row -->
             <div class="row">
+            	<div class="col-lg-12">
+            		<form class="form-inline" action="/book/book!list.action">
+							  <div class="form-group">
+								    <label for="publisherlaber">出版社</label>
+								    <s:textfield cssClass="form-control" id="publisherinput" name="search_LIKE_publisher" placeholder="请输入出版社"> </s:textfield>
+							  </div>
+							  <div class="form-group">
+								    <label for="authorlaber">作者</label>
+								    <input class="form-control" id="authorinput" name="search_LIKE_fauthor" placeholder="请输入作者">
+							  </div>
+							   <div class="form-group">
+								    <label for="booklaber">书本名字</label>
+								    <input class="form-control" id="bookinput" name="search_LIKE_bname" placeholder="请输入书本名字">
+							  </div>
+							  	<button type="submit" class="btn btn-default">分类搜索</button>
+							  	<button type="reset" class="btn btn-default">重置</button>
+						</form>
+            	</div>
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -250,7 +268,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <s:iterator value="page" id="book" status="status">
+                                    <s:iterator value="#request.list" id="book" status="status">
                                         <tr>
                                             <td>${bname}</td>
                                             <td>${isborrowed}</td>
@@ -308,7 +326,7 @@
                     "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
                     "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
                     "sInfoPostFix": "",
-                    "sSearch": "搜索:",
+                    "sSearch": "表格内搜索:",
                     "sUrl": "",
                     "sEmptyTable": "表中数据为空",
                     "sLoadingRecords": "载入中...",

@@ -2,6 +2,7 @@ package book.action;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -54,6 +55,14 @@ public class BookActionTest extends AbstractJunit4SpringContextTests {
 			Book book = (Book) it.next();
 			System.out.println(book.getId());
 		}
+	}
+	
+	@Test
+	public void bookListTest(){
+		Map<String,Object> m = new HashMap<String,Object>();
+		m.put("EQ_bname", 11);
+		List<Book> list = bookService.findByCodicio(m);
+		System.out.println(list);
 	}
 	
 }
