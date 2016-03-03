@@ -103,14 +103,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                            	<form action="/book/book!list.action">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="请输入图书名字...">
+                                <input type="text" class="form-control" name="search_LIKE_bname" placeholder="请输入图书名字...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button class="btn btn-default" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
                             </div>
+                            </form>
                             <!-- /input-group -->
                         </li>
                         <li>
