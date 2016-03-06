@@ -30,7 +30,8 @@ public class Record implements java.io.Serializable {
 	private Date begin;
 	private Date end;
 	private Short money;
-	private Byte renew;
+	private Short renew;
+	private Short state;
 
 	// Constructors
 
@@ -40,13 +41,14 @@ public class Record implements java.io.Serializable {
 
 	/** full constructor */
 	public Record(Long readid, Long bookid, Date begin, Date end,
-			Short money, Byte renew) {
+			Short money, Short renew, Short state) {
 		this.readid = readid;
 		this.bookid = bookid;
 		this.begin = begin;
 		this.end = end;
 		this.money = money;
 		this.renew = renew;
+		this.state = state;
 	}
 
 	// Property accessors
@@ -110,12 +112,19 @@ public class Record implements java.io.Serializable {
 	}
 
 	@Column(name = "RENEW", precision = 2, scale = 0)
-	public Byte getRenew() {
+	public Short getRenew() {
 		return this.renew;
 	}
 
-	public void setRenew(Byte renew) {
+	public void setRenew(Short renew) {
 		this.renew = renew;
 	}
-
+	@Column(name = "STATE", precision = 2, scale = 0)
+	public Short getState(){
+		return this.state;
+	}
+	
+	public void setState(Short state){
+		this.state = state;
+	}
 }
