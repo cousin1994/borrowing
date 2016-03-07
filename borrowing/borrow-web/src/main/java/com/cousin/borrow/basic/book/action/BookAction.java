@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import com.cousin.borrow.basic.entity.Book;
 import com.cousin.borrow.basic.service.BookService;
+import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
 import com.cousin.util.struts2.ServletUtils;
 
@@ -44,6 +45,12 @@ public class BookAction extends BasicSuperAction<Book> {
 		List<Book> list = bookService.findByCodicio(searchParam);
 		request.setAttribute("list", list);
 		return SUCCESS;
+	}
+	
+	public String datatableList(){
+		DataTables data = new DataTables();
+		String json = null;
+		return null;
 	}
 
 }
