@@ -31,7 +31,7 @@ public class RecordService {
 	 * @param record
 	 * @return
 	 */
-	public Record add(Record record){
+	public Record save(Record record){
 		return recordDao.save(record);
 	}
 	

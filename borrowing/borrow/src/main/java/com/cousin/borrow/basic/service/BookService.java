@@ -1,5 +1,6 @@
 package com.cousin.borrow.basic.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +44,30 @@ public class BookService {
 	}
 	
 	/**
-	 * 删除方法
+	 * 删除方法(实体)
 	 * @param book
 	 */
-	public void delete(Book book){
-		bookDao.delete(book);
+	public boolean delete(Book book){
+		try{
+			bookDao.delete(book);
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * 通过id删除
+	 * @param id
+	 */
+	public boolean delete(Long[] id){
+		try{
+			List<Book> bookList = bookDao.findAll(Arrays.asList(id));
+			bookDao.delete(bookList);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 	
 	/**
