@@ -38,6 +38,8 @@ public class BookAction extends BasicSuperAction<Book> {
 	@Autowired
 	private BookService bookService;
 	
+	private Book book;
+	
 	@Override
 	public String list() throws Exception {
 		//前端页面过滤条件设置
@@ -47,10 +49,49 @@ public class BookAction extends BasicSuperAction<Book> {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 用ajax返回
+	 * @return
+	 */
 	public String datatableList(){
 		DataTables data = new DataTables();
 		String json = null;
 		return null;
 	}
+	
+	/**
+	 * 跳转新增页面
+	 * @return
+	 */
+	public String creatBefor(){
+		return "add";
+	}
 
+	/**
+	 * 保存
+	 * @return
+	 */
+	public String save(){
+		this.book = bookService.save(this.book);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 删除
+	 * @return
+	 */
+	public String delete(){
+		bookService.delete(id);
+		return SUCCESS;
+	}
+	
+	
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
 }

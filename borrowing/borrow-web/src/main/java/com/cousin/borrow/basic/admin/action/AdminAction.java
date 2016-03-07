@@ -110,7 +110,7 @@ public class AdminAction extends BasicSuperAction {
 	}
 	
 	/**
-	 * 删除书本，所有  
+	 * 删除书本，所有
 	 * @return
 	 */
 	public String deleteAllBook(){
