@@ -64,7 +64,7 @@ public class BookAction extends BasicSuperAction<Book> {
 	 * @return
 	 */
 	public String creatBefor(){
-		return "add";
+		return "input";
 	}
 
 	/**
