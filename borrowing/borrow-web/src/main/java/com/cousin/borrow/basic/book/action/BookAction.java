@@ -16,6 +16,7 @@ import com.cousin.borrow.basic.service.BookService;
 import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
 import com.cousin.util.struts2.ServletUtils;
+import com.cousin.util.struts2.Struts2Util;
 
 /**
  *@author 戴嘉诚 E-mail:a773807943@gmail.com
@@ -73,7 +74,13 @@ public class BookAction extends BasicSuperAction<Book> {
 	 */
 	public String save(){
 		this.book = bookService.save(this.book);
-		return SUCCESS;
+		if(this.book!=null){
+			Struts2Util.renderText("true");
+			return null;
+		}else{
+			Struts2Util.renderText("false");
+			return null;
+		}
 	}
 	
 	/**

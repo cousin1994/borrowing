@@ -116,7 +116,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/admin/admin!list.action"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
+                            <a href="/admin!list.action"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
                         </li>
                         <li><a href="#"><em class="fa fa-book"></em> 图书管理<span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">

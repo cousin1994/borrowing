@@ -23,10 +23,11 @@ import com.cousin.util.struts2.BasicSuperAction;
 @SuppressWarnings("rawtypes")
 @Controller
 @Scope("prototype")
-@Namespace("/admin")
+@Namespace("/")
 @ParentPackage("my-default")
 @Results({
-	@Result(name=BasicSuperAction.RELOAD  , location="admin.action" , type="redirect")
+	@Result(name=BasicSuperAction.RELOAD  , location="admin.action" , type="redirect"),
+	@Result(name="success", location="/WEB-INF/content/admin/admin.jsp")
 })
 public class AdminAction extends BasicSuperAction {
 

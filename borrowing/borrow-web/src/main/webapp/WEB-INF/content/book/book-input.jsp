@@ -51,7 +51,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="book!save.action" namespace="/book">
+                                    <form role="form" id="bookinputform" action="book!save.action" namespace="/book">
                                         <div class="form-group">
                                         	<div class="input-group">
 	                                        	<span class="input-group-addon">书本名字</span>
