@@ -74,15 +74,6 @@ public class AdminAction extends BasicSuperAction {
 	}
 	
 	/**
-	 * 保存书本数据
-	 * @return
-	 */
-	public String saveBook(){
-		bookService.save(book);
-		return "bookList";
-	}
-	
-	/**
 	 * 保存用户数据
 	 * @return
 	 */

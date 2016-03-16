@@ -37,7 +37,7 @@ public class Book implements java.io.Serializable {
 	private String tauthor;
 	private String translator;
 	private String publisher;
-	private Date publshdate;
+	private Date publishdate;
 	private String intro;
 	private Long type;
 	private Boolean isborrowed;
@@ -63,7 +63,7 @@ public class Book implements java.io.Serializable {
 
 	/** full constructor */
 	public Book(String bname, String fauthor, String sauthor, String tauthor,
-			String translator, String publisher, Date publshdate, String intro,
+			String translator, String publisher, Date publishdate, String intro,
 			Long type, Boolean isborrowed, String ssh, String tmh,
 			Date returndate, String orglib, String curlib, String curlocal,
 			Byte cirtype, Long totalloannum, Long totalrenewnum,
@@ -74,7 +74,7 @@ public class Book implements java.io.Serializable {
 		this.tauthor = tauthor;
 		this.translator = translator;
 		this.publisher = publisher;
-		this.publshdate = publshdate;
+		this.publishdate = publishdate;
 		this.intro = intro;
 		this.type = type;
 		this.isborrowed = isborrowed;
@@ -161,13 +161,13 @@ public class Book implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "PUBLSHDATE", length = 7)
-	public Date getPublshdate() {
-		return this.publshdate;
+	@Column(name = "PUBLISHDATE", length = 7)
+	public Date getPublishdate() {
+		return this.publishdate;
 	}
 
-	public void setPublshdate(Date publshdate) {
-		this.publshdate = publshdate;
+	public void setPublishdate(Date publishdate) {
+		this.publishdate = publishdate;
 	}
 
 	@Column(name = "INTRO",length = 1000)

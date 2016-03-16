@@ -73,8 +73,9 @@ public class BookAction extends BasicSuperAction<Book> {
 	 * @return
 	 */
 	public String save(){
-		this.book = bookService.save(this.book);
-		if(this.book!=null){
+		int booknumber = Integer.parseInt(request.getParameter("booknumber"));
+		boolean flag = bookService.save(this.book,booknumber);
+		if(flag){
 			Struts2Util.renderText("true");
 			return null;
 		}else{

@@ -30,8 +30,13 @@ public class BookService {
 	 * @param book
 	 * @return
 	 */
-	public Book save(Book book){
-		return bookDao.save(book);
+	public boolean save(Book book,int num){
+		for(int i =0;i<num;i++){
+			Book newbook = new Book();
+			newbook = book;
+			newbook = bookDao.save(newbook);
+		}
+		return true;
 	}
 	
 	/**
