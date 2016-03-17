@@ -9,4 +9,5 @@ import com.cousin.util.data.jpa.repository.BaseJpaRepository;
 */
 public interface BookDao extends BaseJpaRepository<Book, Long> {
 
+	
 }

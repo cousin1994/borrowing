@@ -1,12 +1,11 @@
 package com.cousin.borrow.basic.entity;
 
-import static javax.persistence.GenerationType.SEQUENCE;
-
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,9 +19,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * Book entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "BOOK", schema = "BORROW")
+@Table(name = "BOOK")
 @Cache(usage =CacheConcurrencyStrategy.READ_WRITE)//对书本这个实体类进行二级缓存，提交查询效率
-public class Book implements java.io.Serializable {
+public class Book implements java.io.Serializable , Cloneable {
 
 	// Fields
 
@@ -92,12 +91,24 @@ public class Book implements java.io.Serializable {
 		this.cd = cd;
 		this.photo = photo;
 	}
+	
+	
+	@Override
+	public Object clone() {
+		Book book = null;
+		try{
+			book = (Book)super.clone();
+		}catch(CloneNotSupportedException e){
+			System.out.println(e.toString());
+		}
+		return book;
+	}
 
 	// Property accessors
-	@SequenceGenerator(name = "generator",sequenceName="SEQ_BOOK")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 28, scale = 0)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE")
+	@SequenceGenerator(name = "SEQUENCE",allocationSize=1,initialValue=1 ,sequenceName = "SEQ_BOOK")
 	public Long getId() {
 		return this.id;
 	}

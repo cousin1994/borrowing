@@ -3,6 +3,8 @@ package com.cousin.borrow.basic.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
@@ -44,7 +46,7 @@ public class BookType implements java.io.Serializable {
 	// Property accessors
 	@SequenceGenerator(name = "generator",sequenceName="SEQ_BORROW")
 	@Id
-	@GeneratedValue(strategy = SEQUENCE, generator = "generator")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@Column(name = "ID", unique = true, nullable = false, precision = 28, scale = 0)
 	public Long getId() {
 		return this.id;

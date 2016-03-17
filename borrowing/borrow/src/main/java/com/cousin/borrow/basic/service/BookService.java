@@ -1,5 +1,6 @@
 package com.cousin.borrow.basic.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -30,14 +31,23 @@ public class BookService {
 	 * @param book
 	 * @return
 	 */
-	public boolean save(Book book,int num){
-		for(int i =0;i<num;i++){
-			Book newbook = new Book();
-			newbook = book;
-			newbook = bookDao.save(newbook);
-		}
+	public boolean save(Book book){
+		bookDao.save(book);
 		return true;
 	}
+	
+
+	public boolean save(Book book,int num){
+		List<Book> booklist = new ArrayList<Book>();
+		for (int i=0;i<num;i++){
+			Book newbook = new Book();
+			newbook = (Book)book.clone();
+			booklist.add(newbook);
+		}
+		bookDao.save(booklist);
+		return true;
+	}
+	
 	
 	/**
 	 * 通过主键查找书本。

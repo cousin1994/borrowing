@@ -36,7 +36,7 @@ public class BookActionTest extends AbstractJunit4SpringContextTests {
 		Map<String,Object> m = new HashMap<String,Object>();
 		m.put("EQ_bname", 11);
 		Order mOrder = new Order(Direction.ASC, "id");
-		Page<Book> p = bookDao.findAll(m, 0, 20, mOrder);
+		Page<Book> p = bookDao.findAll(m, 0, 20, null);
 		Iterator<Book> it = p.iterator();
 		while (it.hasNext()) {
 			Book book = (Book) it.next();
@@ -65,4 +65,12 @@ public class BookActionTest extends AbstractJunit4SpringContextTests {
 		System.out.println(list);
 	}
 	
+	@Test
+	public void booksaveTest(){
+		int num = 5;
+		Book book = new Book();
+		book.setBname("bcdef");
+		book.setPage(11L);
+		bookService.save(book,num);
+	}
 }
