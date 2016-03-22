@@ -3,10 +3,29 @@
  */
 
     $(document).ready(function() {
-        $('#table').DataTable({
-        		"aLengthMenu":[10,20,40,50], // 
+     var table = $('#table').DataTable({
+        		"aLengthMenu":[10,20,40,50], // 显示多少也
                 responsive: true, //响应式
-                "processing": true, // 过程要有个东西显示
+                processing: true, // 过程要有个东西显示
+                serverSide : true,
+                ajax : "/book/book!datatableList.action",
+                columns: [
+                            {"data": "bname"},
+                            {"data": "isborrowed"},
+                            {"data": "ssh"},
+                            {"data": "typw"},
+                            {"data": "publisher"},
+                            {"data": "publishdate"},
+                            {"data": "id",
+                            }],
+                columnDefs: [
+                            {
+                              "targets": -1, //表示具体需要操作的目标列，下标从0开始
+                               "data": "id", //表示我们需要的某一列数据对应的属性名
+                               "render": function(data, type, full) {
+                                       return "<a href='/update?id=" + data + "'>Update</a>";
+                                }
+                              }],
                 language: {
                     "sProcessing": "处理中...",
                     "sLengthMenu": "显示 _MENU_ 项结果",
@@ -32,4 +51,10 @@
                     }
                 }
         });
+     
+     
+     $('#table tbody').on( 'click', 'tr', function () {
+         $(this).toggleClass('selected');
+     } );
+     
     });

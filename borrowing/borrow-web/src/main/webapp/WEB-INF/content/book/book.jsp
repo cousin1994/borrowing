@@ -267,20 +267,9 @@
                                             <th>书本类型</th>
                                             <th>出版社</th>
                                             <th>出版日期</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    <s:iterator value="#request.list" id="book" status="status">
-                                        <tr>
-                                            <td>${bname}</td>
-                                            <td>${isborrowed}</td>
-                                            <td>${ssh}</td>
-                                            <td>${type}</td>
-                                            <td>${publisher}</td>
-                                            <td>${publishdate}</td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->

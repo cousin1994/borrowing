@@ -1,5 +1,6 @@
 package com.cousin.borrow.basic.book.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
 import com.cousin.util.struts2.ServletUtils;
 import com.cousin.util.struts2.Struts2Util;
+import com.google.gson.Gson;
 
 /**
  *@author 戴嘉诚 E-mail:a773807943@gmail.com
@@ -58,6 +60,43 @@ public class BookAction extends BasicSuperAction<Book> {
 		DataTables data = new DataTables();
 		String json = null;
 		return null;
+		
+		
+	      int pageSize = 10;
+	        int startRecord = 0;
+	        String size = request.getParameter("length");
+	        if (!"".equals(size) && size != null) {
+	            pageSize = Integer.parseInt(size);
+	        }
+	        String currentRecord = request.getParameter("start");
+	        if (!"".equals(currentRecord) && currentRecord != null) {
+	            startRecord = Integer.parseInt(currentRecord);
+	        }
+	        // For sortable
+	        String sortOrder = request.getParameter("order[0][column]");
+	        String sortDir = request.getParameter("order[0][dir]");
+	        System.out.println("sortOrder: " + sortOrder);
+	        System.out.println("sortDir: " + sortDir);
+	                      
+	        // For search
+	        String searchValue = request.getParameter("search[value]");
+	        int count = 0;
+	        List<Data> results = new ArrayList<Data>();
+	        count = dao.count();
+	        results = dao.loadDataList(pageSize, startRecord, columnsName[Integer.parseInt(sortOrder)], sortDir, searchValue);
+	        DataVO<Data> result = new DataVO<Data>();
+	        result.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0"
+	                : request.getParameter("draw")) + 1);
+	        result.setData(results);
+	        result.setRecordsTotal(count);
+	        result.setRecordsFiltered(count);
+	        Gson gson = new Gson();
+	        String output = gson.toJson(result);
+	        System.out.println("Output JSON: \n" + output);
+	        PrintWriter out = response.getWriter();
+	        out.write(output);
+	        out.flush();
+	        out.close();
 	}
 	
 	/**
