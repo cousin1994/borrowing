@@ -8,6 +8,8 @@
                 responsive: true, //响应式
                 processing: true, // 过程要有个东西显示
                 serverSide : true,
+                statesave : true, //允许浏览器进行缓存
+            	searching : false, //禁止搜索
                 ajax : "/book/book!datatableList.action",
                 columns: [
                             {"data": "bname"},
@@ -15,9 +17,7 @@
                             {"data": "ssh"},
                             {"data": "typw"},
                             {"data": "publisher"},
-                            {"data": "publishdate"},
-                            {"data": "id",
-                            }],
+                            {"data": "publishdate"}],
                 columnDefs: [
                             {
                               "targets": -1, //表示具体需要操作的目标列，下标从0开始

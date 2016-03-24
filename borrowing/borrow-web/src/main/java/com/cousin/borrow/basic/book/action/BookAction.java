@@ -58,11 +58,16 @@ public class BookAction extends BasicSuperAction<Book> {
 	 */
 	public String datatableList(){
 		DataTables data = new DataTables();
-		String json = null;
+		int draw = Integer.parseInt(request.getParameter("draw")==null ? "0" : request.getParameter("draw"))+1;
+		String searchValue = request.getParameter("search[value]");
+		int size = Integer.parseInt(request.getParameter("length"));
+		int start = Integer.parseInt(request.getParameter("start"));
+		
+		
+		
+		
 		return null;
-		
-		
-	      int pageSize = 10;
+	     /* int pageSize = 10;
 	        int startRecord = 0;
 	        String size = request.getParameter("length");
 	        if (!"".equals(size) && size != null) {
@@ -96,7 +101,7 @@ public class BookAction extends BasicSuperAction<Book> {
 	        PrintWriter out = response.getWriter();
 	        out.write(output);
 	        out.flush();
-	        out.close();
+	        out.close();*/
 	}
 	
 	/**
