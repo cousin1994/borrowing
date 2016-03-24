@@ -15,7 +15,7 @@
                             {"data": "bname"},
                             {"data": "isborrowed"},
                             {"data": "ssh"},
-                            {"data": "typw"},
+                            {"data": "type"},
                             {"data": "publisher"},
                             {"data": "publishdate"}],
                 columnDefs: [

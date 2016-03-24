@@ -58,11 +58,27 @@ public class BookAction extends BasicSuperAction<Book> {
 	 */
 	public String datatableList(){
 		DataTables data = new DataTables();
+		//获取请求次数
 		int draw = Integer.parseInt(request.getParameter("draw")==null ? "0" : request.getParameter("draw"))+1;
+		//获取用户过滤框里的字符
 		String searchValue = request.getParameter("search[value]");
+		//数据长度
 		int size = Integer.parseInt(request.getParameter("length"));
+		//数据起始位置
 		int start = Integer.parseInt(request.getParameter("start"));
-		
+		//总记录数
+		String recordsTotal = "0";
+		//过滤后记录数
+		String recordsFiltered = "";
+		//定义列名
+		String[] cols = { "bname", "isborrowed", "ssh", "type", "publisher", "publishdate" };
+		//获取客户端需要那一列排序
+		String orderColumn = "0";
+		orderColumn = request.getParameter("order[0][column]");
+		orderColumn = cols[Integer.parseInt(orderColumn)];
+		//获取排序方式 默认为asc
+		String orderDir = "asc";
+		orderDir = request.getParameter("order[0][dir]");
 		
 		
 		
