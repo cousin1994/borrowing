@@ -4,3 +4,7 @@
 body{
 	padding-top:70px;
 }
+
+.selected{
+	background-color: #DFF0D8;
+}
