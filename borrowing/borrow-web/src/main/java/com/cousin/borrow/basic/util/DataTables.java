@@ -7,13 +7,13 @@ public class DataTables {
 	private int draw;  //获取请求次数
 	private int recordsTotal;		//过滤前的总条数
 	private int recordsFiltered;	//过滤后的条数
-	private List<String[]> data;	//数据
+	private List<?> data;	//数据
 	private int length;				//当前页长度
 	private int start;				//第几页
 	private Map<String, String> search;		//查询条件
 	private Map<String, String>[] order;	//排序
 
-	public DataTables(int draw, int recordsTotal, int recordsFiltered, List<String[]> data) {
+	public DataTables(int draw, int recordsTotal, int recordsFiltered, List<?> data) {
 		super();
 		this.draw = draw;
 		this.recordsTotal = recordsTotal;
@@ -21,7 +21,7 @@ public class DataTables {
 		this.data = data;
 	}
 
-	public DataTables(int draw, int recordsTotal, int recordsFiltered, List<String[]> data, int length, int start) {
+	public DataTables(int draw, int recordsTotal, int recordsFiltered, List<?> data, int length, int start) {
 		super();
 		this.draw = draw;
 		this.recordsTotal = recordsTotal;
@@ -58,11 +58,11 @@ public class DataTables {
 		this.recordsFiltered = recordsFiltered;
 	}
 
-	public List<String[]> getData() {
+	public List<?> getData() {
 		return data;
 	}
 
-	public void setData(List<String[]> data) {
+	public void setData(List<?> data) {
 		this.data = data;
 	}
 

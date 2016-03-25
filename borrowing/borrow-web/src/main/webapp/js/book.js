@@ -3,6 +3,9 @@
  */
 
     $(document).ready(function() {
+    	var tpl = $("#tpl").html();
+
+    	var template = Handlebars.compile(tpl);
      var table = $('#table').DataTable({
         		"aLengthMenu":[10,20,40,50], // 显示多少也
                 responsive: true, //响应式
@@ -17,13 +20,23 @@
                             {"data": "ssh"},
                             {"data": "type"},
                             {"data": "publisher"},
-                            {"data": "publishdate"}],
+                            {"data": "publishdate"},
+                            {"data": null,
+                            	
+                            }],
                 columnDefs: [
                             {
-                              "targets": -1, //表示具体需要操作的目标列，下标从0开始
-                               "data": "id", //表示我们需要的某一列数据对应的属性名
-                               "render": function(data, type, full) {
-                                       return "<a href='/update?id=" + data + "'>Update</a>";
+                              targets: 6, //表示具体需要操作的目标列，下标从0开始
+                               render : function(data, type, full) {
+                            	   var context =
+                                   {
+                                       func: [
+                                           {"name": "修改", "fn": "edit(\'" +full+ "\')", "type": "primary"},
+                                           {"name": "删除", "fn": "del(" + full.id + ")", "type": "danger"}
+                                       ]
+                                   };
+                                   var html = template(context);
+                                   return html;
                                 }
                               }],
                 language: {
@@ -58,3 +71,11 @@
      } );
      
     });
+    
+    /**
+     * 删除数据
+     * @param name
+     */
+    function del(data) {
+    	alert(data);
+    }

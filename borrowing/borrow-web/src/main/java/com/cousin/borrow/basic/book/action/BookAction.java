@@ -1,6 +1,5 @@
 package com.cousin.borrow.basic.book.action;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
 import com.cousin.borrow.basic.entity.Book;
@@ -54,6 +56,7 @@ public class BookAction extends BasicSuperAction<Book> {
 	
 	/**
 	 * 用ajax返回
+	 * 要返回data、draw、recordsTotal、recordsFiltered
 	 * @return
 	 */
 	public String datatableList(){
@@ -79,9 +82,20 @@ public class BookAction extends BasicSuperAction<Book> {
 		//获取排序方式 默认为asc
 		String orderDir = "asc";
 		orderDir = request.getParameter("order[0][dir]");
-		
-		
-		
+		Direction dir = null;
+		if(orderDir.equals("asc")){
+			dir = Direction.ASC;
+		}else{
+			dir = Direction.DESC;
+		}
+		Order order = new Order(dir, orderColumn);
+		Page<Book> p = bookService.findPageBycondicio(null, start, size, order);
+		data.setData(p.getContent());
+		data.setDraw(draw);
+		data.setRecordsTotal((int)p.getTotalElements());
+		data.setRecordsFiltered((int)p.getTotalElements());
+		String json = new Gson().toJson(data);
+		Struts2Util.renderJson(json);
 		return null;
 	     /* int pageSize = 10;
 	        int startRecord = 0;

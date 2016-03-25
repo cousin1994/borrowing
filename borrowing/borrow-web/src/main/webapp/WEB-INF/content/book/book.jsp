@@ -309,9 +309,15 @@
     
     <!-- 这个页面的js -->
     <script type="text/javascript" src="/js/book.js"></script>
-
+    
+    <!-- 预编译模板 -->
+ 	<script type="text/javascript" src="/js/handlebars-v3.0.1.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-
+<script id="tpl" type="text/x-handlebars-template">
+    {{#each func}}
+    <button type="button" class="btn btn-{{this.type}} btn-sm" onclick="{{this.fn}}">{{this.name}}</button>
+    {{/each}}
+</script>
 </body>
 
 </html>

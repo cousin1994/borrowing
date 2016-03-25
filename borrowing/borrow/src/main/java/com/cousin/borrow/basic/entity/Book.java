@@ -39,7 +39,7 @@ public class Book implements java.io.Serializable , Cloneable {
 	private Date publishdate;
 	private String intro;
 	private Long type;
-	private Boolean isborrowed;
+	private Long isborrowed;
 	private String ssh;
 	private String tmh;
 	private Date returndate;
@@ -63,7 +63,7 @@ public class Book implements java.io.Serializable , Cloneable {
 	/** full constructor */
 	public Book(String bname, String fauthor, String sauthor, String tauthor,
 			String translator, String publisher, Date publishdate, String intro,
-			Long type, Boolean isborrowed, String ssh, String tmh,
+			Long type, Long isborrowed, String ssh, String tmh,
 			Date returndate, String orglib, String curlib, String curlocal,
 			Byte cirtype, Long totalloannum, Long totalrenewnum,
 			Long page, String publisherlocal, Byte cd, String photo) {
@@ -200,11 +200,11 @@ public class Book implements java.io.Serializable , Cloneable {
 	}
 
 	@Column(name = "ISBORROWED", precision = 1, scale = 0)
-	public Boolean getIsborrowed() {
+	public Long getIsborrowed() {
 		return this.isborrowed;
 	}
 
-	public void setIsborrowed(Boolean isborrowed) {
+	public void setIsborrowed(Long isborrowed) {
 		this.isborrowed = isborrowed;
 	}
 
