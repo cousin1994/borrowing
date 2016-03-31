@@ -39,7 +39,7 @@ public class BookService {
 
 	public boolean save(Book book,int num){
 		List<Book> booklist = new ArrayList<Book>();
-		for (int i=0;i<num;i++){
+		for (int i=0;i<num;i++){//当存在批量新增图书的时候，就调用clone克隆方法，创建一个新对象。而不是引用就对象
 			Book newbook = new Book();
 			newbook = (Book)book.clone();
 			booklist.add(newbook);

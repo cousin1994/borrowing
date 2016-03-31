@@ -125,7 +125,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> 读者管理</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> 用户管理</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> 图书查询<span class="fa arrow"></span></a>
@@ -243,7 +243,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:_add()">
+                        <a href="javascript:_add(0)">
                             <div class="panel-footer">
                                 <span class="pull-left">点击新增</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

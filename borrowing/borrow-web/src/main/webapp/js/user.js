@@ -1,8 +1,9 @@
 /**
- * 
+ * 用户管理的js
  */
 
-    $(document).ready(function() {
+
+$(document).ready(function() {
     	var tpl = $("#tpl").html();
 
     	var template = Handlebars.compile(tpl);
@@ -15,29 +16,44 @@
             	searching : false, //禁止搜索
                 ajax : "/book/book!datatableList.action",
                 columns: [
-                            {"data": "bname"},
-                            {"data": "isborrowed",
+                            {"data": "name"},
+                            {"data": "code"},
+                            {"data": "violate",
                             	render : function(data,type,full){
                             		if(data==0){
-                            			data = "<a  href='#'  >在库</a>";
-                            		}else if(data==1){
-                            			data = "<a  href='#'  >预借</a>";
+                            			data = "<a  href='#'  >正常</a>";
                             		}else{
-                            			data = "<a  href='#'  >已经借出</a>";
+                            			data = "<a  href='#'  >违约</a>";
                             		}
                             		return data;
-                            	}
-                            },
-                            {"data": "ssh"},
-                            {"data": "type"},
-                            {"data": "publisher"},
-                            {"data": "publishdate"},
+                            	}},
+                            {"data": "phone"},
+                            {"data": "role",
+                            	render : function(data,type,full){
+                            		if(data==0){
+                            			data = "<a  href='#'  >超级管理员</a>";
+                            		}else if(data==1){
+                            			data = "<a  href='#'  >系统管理员</a>";
+                            		}else{
+                            			data = "<a  href='#'  >普通用户</a>";
+                            		}
+                            		return data;
+                            	}},
+                            {"data": "state",
+                                	render : function(data,type,full){
+                                		if(data==0){
+                                			data = "<a  href='#'  >正常</a>";
+                                		}else{
+                                			data = "<a  href='#'  >无效</a>";
+                                		}
+                                		return data;
+                                	}},
                             {"data": "id"}
                             ],
                 columnDefs: [
                             {
                               targets: 6, //表示具体需要操作的目标列，下标从0开始
-                              orderable : false, 
+                              orderable : false, //禁止排序
                                render : function(data, type, full) {
                             	   var context =
                                    {

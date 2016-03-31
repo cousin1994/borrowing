@@ -2,8 +2,11 @@ package com.cousin.borrow.basic.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.cousin.borrow.basic.dao.UserroleDao;
@@ -59,4 +62,25 @@ public class UserroleService {
 		return user;
 	}
 	
+	
+	/**
+	 * 根据id查找用户
+	 * @param id
+	 * @return
+	 */
+	public Userrole findById(Long id){
+		return userroleDao.findOne(id);
+	}
+	
+	/**
+	 * 根据条件，查找
+	 * @param searchParame
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param orders
+	 * @return
+	 */
+	public Page<Userrole> findPage(Map<String,Object> searchParame, int pageNumber,int pageSize,Order...orders){
+		return userroleDao.findAll(searchParame, pageNumber, pageSize, orders);
+	}
 }

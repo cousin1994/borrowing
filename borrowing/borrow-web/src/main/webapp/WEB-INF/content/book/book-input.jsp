@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                         	<div class="input-group">
 	                                        	<span class="input-group-addon">书本名字</span>
-	                                        	<s:textfield cssClass="form-control" type="text" id="bookname" name="book.bname"></s:textfield>
+	                                        	<s:textfield cssClass="form-control " type="text" id="bookname" name="book.bname"></s:textfield>
                                         	</div>
                                         </div>
                                         <div class="form-group">
@@ -91,7 +91,7 @@
                                         <div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">出版日期</span>
-												<s:textfield cssClass="form-control" type="date" id="publishdate" name="book.publishdate"></s:textfield>
+												<s:textfield cssClass="form-control" type="date" id="publishdate" name="book.publishdate" format="yyyy-MM-dd" ></s:textfield>
 											</div>
                                         </div>
                                         <div class="form-group">
@@ -100,12 +100,27 @@
 												<s:textfield cssClass="form-control" type="text" id="type" name="book.type"></s:textfield>
 											</div>
                                         </div>
-                                        <div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">新增数量</span>
-												<s:textfield cssClass="form-control" type="text" id="number" name="booknumber"></s:textfield>
-											</div>
-                                        </div>
+                                        <s:if test="#request.book.id !=null">
+                                        <input type="hidden" name="booknumber" value="1">
+                                        	<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">馆藏状态</span>
+													<select class="form-control" name="book.isborrowed"> 
+														<option value="0">在库</option>
+														<option value="1">已预借</option>
+														<option value="2">已借出</option>
+													</select>
+												</div>
+	                                        </div>
+                                        </s:if><s:else>
+                                        <input name="book.isborrowed" type="hidden" value="0" >
+	                                        <div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">新增数量</span>
+													<s:textfield cssClass="form-control" type="text" id="number" name="booknumber"></s:textfield>
+												</div>
+	                                        </div>
+                                        </s:else>
                                         <div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">索书号</span>
@@ -172,8 +187,6 @@
                                             <label>上传图片</label>
                                             <input type="file" >
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

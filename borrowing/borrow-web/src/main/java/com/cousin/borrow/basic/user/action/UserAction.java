@@ -1,7 +1,4 @@
-package com.cousin.borrow.basic.book.action;
-
-import java.util.List;
-import java.util.Map;
+package com.cousin.borrow.basic.user.action;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -15,51 +12,41 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
 import com.cousin.borrow.basic.entity.Book;
-import com.cousin.borrow.basic.service.BookService;
+import com.cousin.borrow.basic.entity.Userrole;
+import com.cousin.borrow.basic.service.UserroleService;
 import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
-import com.cousin.util.struts2.ServletUtils;
 import com.cousin.util.struts2.Struts2Util;
 import com.google.gson.Gson;
 
 /**
  *@author 戴嘉诚 E-mail:a773807943@gmail.com
- *@version V0.1 创建时间：2016年2月29日 上午12:27:02
+ *@version V0.1 创建时间：2016年3月31日 下午2:36:32
  */
 @Controller
+@Namespace("/user")
 @Scope("prototype")
 @ParentPackage("my-default")
-@Namespace("/book")
 @Results({
-	@Result(name=BasicSuperAction.RELOAD , location = "book.action" , type="redirect")
+	@Result(name=BasicSuperAction.RELOAD ,location="user.action"  , type="redirect")
 })
-public class BookAction extends BasicSuperAction<Book> {
+public class UserAction extends BasicSuperAction<Userrole> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4486040741811531550L;
+	private static final long serialVersionUID = 3574175299840077940L;
 
 	@Autowired
-	private BookService bookService;
+	private UserroleService userService;
 	
-	private Book book;
-	
-	@Override
-	public String list() throws Exception {
-		//前端页面过滤条件设置
-		Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-		List<Book> list = bookService.findByCodicio(searchParam);
-		request.setAttribute("list", list);
-		return SUCCESS;
-	}
+	private Userrole user;
 	
 	/**
-	 * 用ajax返回
-	 * 要返回data、draw、recordsTotal、recordsFiltered
-	 * @return
+	 * list user
 	 */
-	public String datatableList(){
+	@Override
+	public String list() throws Exception {
 		DataTables data = new DataTables();
 		//获取请求次数
 		int draw = Integer.parseInt(request.getParameter("draw")==null ? "0" : request.getParameter("draw"))+1;
@@ -90,7 +77,7 @@ public class BookAction extends BasicSuperAction<Book> {
 			dir = Direction.DESC;
 		}
 		Order order = new Order(dir, orderColumn);
-		Page<Book> p = bookService.findPageBycondicio(null, sta, size, order);
+		Page<Userrole> p = userService.findPage(null, sta, size, order);
 		data.setData(p.getContent());
 		data.setDraw(draw);
 		data.setRecordsTotal((int)p.getTotalElements());
@@ -101,51 +88,55 @@ public class BookAction extends BasicSuperAction<Book> {
 	}
 	
 	/**
-	 * 跳转新增页面
-	 * @return
-	 */
-	public String creatBefor(){
-		return "input";
-	}
-
-	
-	public String findByid(){
-		book = bookService.findById(sid);
-		return "input";
-	}
-	
-	/**
-	 * 保存
+	 * save user
 	 * @return
 	 */
 	public String save(){
-		int booknumber = Integer.parseInt(request.getParameter("booknumber"));
-		boolean flag = bookService.save(this.book,booknumber);
-		if(flag){
-			Struts2Util.renderText("true");
-			return null;
+		user = userService.save(user);
+		if(user!=null){
+			Struts2Util.renderText("success");
 		}else{
-			Struts2Util.renderText("false");
-			return null;
+			Struts2Util.renderText("fail");
 		}
+		return null;
 	}
 	
 	/**
-	 * 删除
+	 * delete user
 	 * @return
 	 */
-	public String delete(){
-		bookService.delete(id);
-		return SUCCESS;
+	public String del(){
+		boolean flag = userService.delete(sid);
+		if(flag){
+			Struts2Util.renderText("success");
+		}else{
+			Struts2Util.renderText("fail");
+		}
+		return null;
+	}
+	/**
+	 * 根据id查找用户
+	 * @return
+	 */
+	public String findById(){
+		user = userService.findById(sid);
+		return "input";
 	}
 	
-	
-
-	public Book getBook() {
-		return book;
+	/**
+	 * 新增之前
+	 * @return
+	 */
+	public String beforCreat(){
+		return "input";
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public Userrole getUser() {
+		return user;
 	}
+
+	public void setUser(Userrole user) {
+		this.user = user;
+	}
+
 }

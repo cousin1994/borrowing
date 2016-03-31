@@ -129,7 +129,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../user/user!list.action"><i class="fa fa-table fa-fw"></i> 读者管理</a>
+                            <a href="/user/user.action"><i class="fa fa-table fa-fw"></i> 用户管理</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> 图书查询<span class="fa arrow"></span></a>
@@ -232,27 +232,11 @@
             <!-- /.row -->
             <div class="row">
             	<div class="col-lg-12">
-            		<form class="form-inline" action="/book/book!list.action">
-							  <div class="form-group">
-								    <label for="publisherlaber">出版社</label>
-								    <input class="form-control" id="publisherinput" name="search_LIKE_publisher" placeholder="请输入出版社">
-							  </div>
-							  <div class="form-group">
-								    <label for="authorlaber">作者</label>
-								    <input class="form-control" id="authorinput" name="search_LIKE_fauthor" placeholder="请输入作者">
-							  </div>
-							   <div class="form-group">
-								    <label for="booklaber">书本名字</label>
-								    <input class="form-control" id="bookinput" name="search_LIKE_bname" placeholder="请输入书本名字">
-							  </div>
-							  	<button type="submit" class="btn btn-default">分类搜索</button>
-							  	<button type="reset" class="btn btn-default">重置</button>
-						</form>
             	</div>
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            图书信息
+                            用户信息
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -260,12 +244,12 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="table">
                                     <thead>
                                         <tr>
-                                            <th>图书名字</th>
-                                            <th>馆藏状态</th>
-                                            <th>索书号</th>
-                                            <th>书本类型</th>
-                                            <th>出版社</th>
-                                            <th>出版日期</th>
+                                            <th>登录名字</th>
+                                            <th>借阅证号</th>
+                                            <th>违约状态</th>
+                                            <th>手机</th>
+                                            <th>登录角色</th>
+                                            <th>当前状态</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -307,7 +291,7 @@
     <script src="../dist/js/sb-admin-2.js"></script>
     
     <!-- 这个页面的js -->
-    <script type="text/javascript" src="/js/book.js"></script>
+    <script type="text/javascript" src="/js/user.js"></script>
     
     <!-- jquery验证 -->
     <script src="/bower_components/jquery-validation-1.15.0/dist/jquery.validate.min.js"></script>

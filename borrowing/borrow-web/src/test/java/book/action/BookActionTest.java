@@ -49,7 +49,7 @@ public class BookActionTest extends AbstractJunit4SpringContextTests {
 		Map<String,Object> m = new HashMap<String,Object>();
 		m.put("EQ_bname", 11);
 		Order mOrder = new Order(Direction.ASC, "id");
-		Page<Book> p = bookService.findPageBycondicio(m, 0, 20, mOrder);
+		Page<Book> p = bookService.findPageBycondicio(null, 2, 10, mOrder);
 		Iterator<Book> it = p.iterator();
 		while (it.hasNext()) {
 			Book book = (Book) it.next();
