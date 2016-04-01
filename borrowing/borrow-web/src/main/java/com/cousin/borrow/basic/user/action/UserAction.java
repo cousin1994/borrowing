@@ -1,5 +1,8 @@
 package com.cousin.borrow.basic.user.action;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -16,6 +19,7 @@ import com.cousin.borrow.basic.entity.Userrole;
 import com.cousin.borrow.basic.service.UserroleService;
 import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
+import com.cousin.util.struts2.ServletUtils;
 import com.cousin.util.struts2.Struts2Util;
 import com.google.gson.Gson;
 
@@ -42,11 +46,15 @@ public class UserAction extends BasicSuperAction<Userrole> {
 	
 	private Userrole user;
 	
-	/**
-	 * list user
-	 */
 	@Override
 	public String list() throws Exception {
+		// TODO Auto-generated method stub
+		return SUCCESS;
+	}
+	/**
+	 * ajaxList user
+	 */
+	public String ajaxList() throws Exception {
 		DataTables data = new DataTables();
 		//获取请求次数
 		int draw = Integer.parseInt(request.getParameter("draw")==null ? "0" : request.getParameter("draw"))+1;
@@ -62,27 +70,27 @@ public class UserAction extends BasicSuperAction<Userrole> {
 		//过滤后记录数
 		String recordsFiltered = "";
 		//定义列名
-		String[] cols = { "bname", "isborrowed", "ssh", "type", "publisher", "publishdate" };
+		String[] cols = { "name", "code", "violate", "phone", "role", "state" };
 		//获取客户端需要那一列排序
 		String orderColumn = "0";
 		orderColumn = request.getParameter("order[0][column]");
 		orderColumn = cols[Integer.parseInt(orderColumn)];
 		//获取排序方式 默认为asc
-		String orderDir = "asc";
-		orderDir = request.getParameter("order[0][dir]");
-		Direction dir = null;
-		if(orderDir.equals("asc")){
-			dir = Direction.ASC;
-		}else{
-			dir = Direction.DESC;
-		}
+				String orderDir = "asc";
+				orderDir = request.getParameter("order[0][dir]");
+				Direction dir = null;
+				if(orderDir.equals("asc")){
+					dir = Direction.ASC;
+				}else{
+					dir = Direction.DESC;
+				}
 		Order order = new Order(dir, orderColumn);
 		Page<Userrole> p = userService.findPage(null, sta, size, order);
 		data.setData(p.getContent());
 		data.setDraw(draw);
 		data.setRecordsTotal((int)p.getTotalElements());
 		data.setRecordsFiltered((int)p.getTotalElements());
-		String json = new Gson().toJson(data);
+		String json = new Gson().toJson(data); 
 		Struts2Util.renderJson(json);
 		return null;
 	}
@@ -105,7 +113,7 @@ public class UserAction extends BasicSuperAction<Userrole> {
 	 * delete user
 	 * @return
 	 */
-	public String del(){
+	public String delete(){
 		boolean flag = userService.delete(sid);
 		if(flag){
 			Struts2Util.renderText("success");

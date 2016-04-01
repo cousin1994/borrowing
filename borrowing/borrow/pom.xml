@@ -14,7 +14,7 @@
   		<artifactId>core</artifactId>
   	</dependency>
   </dependencies>
-  
+       
   <build>
 		<resources>
 			<!-- 将classes拷贝到集成测试模块 -->

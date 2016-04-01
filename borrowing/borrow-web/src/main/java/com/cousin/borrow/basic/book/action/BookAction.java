@@ -48,9 +48,9 @@ public class BookAction extends BasicSuperAction<Book> {
 	@Override
 	public String list() throws Exception {
 		//前端页面过滤条件设置
-		Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
+		/*Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
 		List<Book> list = bookService.findByCodicio(searchParam);
-		request.setAttribute("list", list);
+		request.setAttribute("list", list);*/
 		return SUCCESS;
 	}
 	
