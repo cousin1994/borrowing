@@ -103,9 +103,22 @@ public class UserAction extends BasicSuperAction<Userrole> {
 		user = userService.save(user);
 		if(user!=null){
 			Struts2Util.renderText("success");
+			return null;
 		}else{
 			Struts2Util.renderText("fail");
+			return null;
 		}
+	}
+	
+	/**
+	 * 重置密码
+	 * @return
+	 */
+	public String resetPassword(){
+		user = userService.findById(sid);
+		user.setPassword("123");
+		userService.save(user);
+		Struts2Util.renderText("success");
 		return null;
 	}
 	
@@ -117,10 +130,11 @@ public class UserAction extends BasicSuperAction<Userrole> {
 		boolean flag = userService.delete(sid);
 		if(flag){
 			Struts2Util.renderText("success");
+			return null;
 		}else{
 			Struts2Util.renderText("fail");
+			return null;
 		}
-		return null;
 	}
 	/**
 	 * 根据id查找用户
@@ -130,6 +144,8 @@ public class UserAction extends BasicSuperAction<Userrole> {
 		user = userService.findById(sid);
 		return "input";
 	}
+	
+	
 	
 	/**
 	 * 新增之前

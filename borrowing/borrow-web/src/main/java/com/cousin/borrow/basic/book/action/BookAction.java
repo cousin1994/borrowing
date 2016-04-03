@@ -135,8 +135,13 @@ public class BookAction extends BasicSuperAction<Book> {
 	 * @return
 	 */
 	public String delete(){
-		bookService.delete(id);
-		return SUCCESS;
+		boolean flag = bookService.delete(id);
+		if(flag){
+			Struts2Util.renderText("success");
+		}else{
+			Struts2Util.renderText("fail");
+		}
+		return null;
 	}
 	
 	

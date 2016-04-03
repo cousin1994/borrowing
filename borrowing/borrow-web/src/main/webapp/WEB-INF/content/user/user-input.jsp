@@ -38,21 +38,13 @@
 <body>
 
     <div id="wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">新增用户</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" id="bookinputform" action="user!save.action" namespace="/user">
-                                    <input type="hidden" name="user.id" value="${user.id }">
+                                    <form role="form" id="userinputform" action="user!save.action" namespace="/user">
+                                    <input type="hidden" name="user.id" value="${user.id}">
                                         <div class="form-group">
                                         	<div class="input-group">
 	                                        	<span class="input-group-addon">借阅证号</span>
@@ -69,6 +61,24 @@
 											<div class="input-group">
 												<span class="input-group-addon">姓名</span>
 												<s:textfield cssClass="form-control" type="text" id="name" name="user.name"></s:textfield>
+											</div>
+                                        </div>
+                                        <div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">当前状态</span>
+												<select id="state" class="form-control" name="user.state">
+													<option value="0">正常</option>
+													<option value="1">无效</option>
+												</select>
+											</div>
+                                        </div>
+                                        <div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">违约状况</span>
+												<select id="violate" class="form-control" name="user.violate">
+													<option value="0">正常</option>
+													<option value="1">违约</option>
+												</select>
 											</div>
                                         </div>
                                         <div class="form-group">
@@ -101,27 +111,6 @@
 												<s:textfield cssClass="form-control" type="text" id="jg" name="user.jg"></s:textfield>
 											</div>
                                         </div>
-                                        <%-- <s:if test="#request.book.id !=null">
-                                        <input type="hidden" name="booknumber" value="1">
-                                        	<div class="form-group">
-												<div class="input-group">
-													<span class="input-group-addon">馆藏状态</span>
-													<select class="form-control" name="book.isborrowed"> 
-														<option value="0">在库</option>
-														<option value="1">已预借</option>
-														<option value="2">已借出</option>
-													</select>
-												</div>
-	                                        </div>
-                                        </s:if><s:else>
-                                        <input name="book.isborrowed" type="hidden" value="0" >
-	                                        <div class="form-group">
-												<div class="input-group">
-													<span class="input-group-addon">新增数量</span>
-													<s:textfield cssClass="form-control" type="text" id="number" name="booknumber"></s:textfield>
-												</div>
-	                                        </div>
-                                        </s:else> --%>
                                         <div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">邮编</span>
@@ -182,8 +171,6 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
 	</div> 
 	<!-- /#wrapper -->
     <!-- jQuery -->

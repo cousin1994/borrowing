@@ -101,3 +101,59 @@ function _add(type) {
 	});
 
 }
+
+//新增用户
+function _adduser(type) {
+	var type = type;
+	var _title = "新增用户";
+	var _area = ['50%','90%'];
+	var _path = "../user/user!beforCreat.action";
+	var index ;
+	index = top.layer.open({
+		type : 2,
+		title : _title,
+		shadeClose : false,
+		shade : 0.2,
+		maxmin : true,
+		area : _area,
+		content : [ _path,'yes'],//iframe的url , no代表不显示滚动条
+		btn : ['确定', '取消'],
+		yes: function(index,layero) {//确定之后的函数
+			var _body = top.layer.getChildFrame('body' ,index);
+			var _form = _body.find('#userinputform');
+			var isok = $(_form).validate({
+				//这里是加验证的
+			}).form();
+			if(isok){
+				$.ajax({
+					type:"POST",
+					dataType:"text",
+					url:"../user/user!save.action",
+					data : _form.serialize(),
+					success:function(data){
+						if(data=="success"){
+							top.layer.msg("用户保存成功",{time:500},function(){
+								top.layer.close(index);
+								if(type==1){
+									$('#table').DataTable().ajax.reload();
+								}
+							});
+						}else{
+							top.layer.msg("用户保存失败",{time:500});
+						}
+					},
+					error : function(data){
+						alert("error"+data.responseText);
+					}
+				});
+			}else{
+				//阻止关闭
+				top.layer.close(index);
+			};
+		},
+		btn2 : function(index){
+			//这是btn2的
+		}
+	});
+
+}

@@ -95,7 +95,7 @@ $(document).ready(function() {
                 "t" +
                 "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         initComplete: function () {
-            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" onclick="_add(1)" >添加用户</button>');
+            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" onclick="_adduser(1)" >添加用户</button>');
         }
         });
      
@@ -117,7 +117,7 @@ $(document).ready(function() {
     function del(data) {
     	 layer.confirm('确定要删除本数据?', {icon: 3, title:'提 示'}, function(index){
     		 $.ajax({
-    			 url : '/user/user!delete.action?id='+data,
+    			 url : '/user/user!delete.action?sid='+data,
     			 success : function (data) {
     				 top.layer.msg("删除成功",{time:500},function(){
 							top.layer.close(index);
@@ -154,7 +154,7 @@ $(document).ready(function() {
     		btn : ['确定', '取消'],
     		yes: function(index,layero) {//确定之后的函数
     			var _body = top.layer.getChildFrame('body' ,index);
-    			var _form = _body.find('#bookinputform');
+    			var _form = _body.find('#userinputform');
     			var isok = $(_form).validate({
     				//这里是加验证的
     			}).form();
@@ -165,7 +165,7 @@ $(document).ready(function() {
     					url:"../user/user!save.action",
     					data : _form.serialize(),
     					success:function(data){
-    						if(data=="true"){
+    						if(data=="success"){
     							top.layer.msg("用户保存成功",{time:500},function(){
     								top.layer.close(index);
     								$('#table').DataTable().ajax.reload();
@@ -189,3 +189,22 @@ $(document).ready(function() {
     	});
 
     }
+    
+    function reset(data) {
+    	layer.confirm('确定要重置密码?', {icon: 3, title:'提 示'}, function(index){
+   		 $.ajax({
+   			 url : '/user/user!resetPassword.action?sid='+data,
+   			 success : function (data) {
+   				 top.layer.msg("重置成功",{time:500},function(){
+							top.layer.close(index);
+						});
+				},
+   		 	error : function(data){
+   		 		top.layer.msg("重置失败",{time:500},function(){
+						top.layer.close(index);
+					});
+   		 	}
+   		 });
+		    layer.close(index);
+		});
+	}
