@@ -1,4 +1,4 @@
-package com.cousin.borrow.basic;
+package com.cousin.borrow.basic.admin.action;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
