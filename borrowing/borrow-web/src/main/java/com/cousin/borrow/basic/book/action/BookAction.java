@@ -1,7 +1,9 @@
 package com.cousin.borrow.basic.book.action;
 
-import java.util.List;
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -15,10 +17,12 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
 import com.cousin.borrow.basic.entity.Book;
+import com.cousin.borrow.basic.entity.Record;
+import com.cousin.borrow.basic.entity.Userrole;
 import com.cousin.borrow.basic.service.BookService;
+import com.cousin.borrow.basic.service.RecordService;
 import com.cousin.borrow.basic.util.DataTables;
 import com.cousin.util.struts2.BasicSuperAction;
-import com.cousin.util.struts2.ServletUtils;
 import com.cousin.util.struts2.Struts2Util;
 import com.google.gson.Gson;
 
@@ -43,6 +47,9 @@ public class BookAction extends BasicSuperAction<Book> {
 	@Autowired
 	private BookService bookService;
 	
+	@Autowired
+	private RecordService recordService;
+	
 	private Book book;
 	
 	@Override
@@ -51,7 +58,13 @@ public class BookAction extends BasicSuperAction<Book> {
 		/*Map<String,Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
 		List<Book> list = bookService.findByCodicio(searchParam);
 		request.setAttribute("list", list);*/
-		return SUCCESS;
+		Userrole user = (Userrole) request.getSession().getAttribute("user");
+		if(user.getRole()==2){
+			System.out.println("test");
+			return "reader";
+		}else{
+			return SUCCESS;
+		}
 	}
 	
 	/**
@@ -138,13 +151,53 @@ public class BookAction extends BasicSuperAction<Book> {
 		boolean flag = bookService.delete(id);
 		if(flag){
 			Struts2Util.renderText("success");
+			return null;
 		}else{
 			Struts2Util.renderText("fail");
+			return null;
 		}
-		return null;
 	}
 	
+	/**
+	 * 预借图书
+	 * @return
+	 */
+	public String reserve(){
+		Userrole user = (Userrole) request.getSession().getAttribute("user");
+		book = bookService.findById(sid);
+		book.setIsborrowed(1L);
+		Record record = new Record();
+		record.setBookid(book.getId());//写入图书id
+		record.setReadid(user.getId());//写入读者id
+		record.setBegin(new Date());
+		record.setRenew(0);//续借
+		record.setState(0);//状态正常
+		record.setEnd(getDate(2L));//
+		record.setBookname(book.getBname());
+		recordService.save(record);
+		boolean flag = bookService.save(book);
+		if(flag){
+			Struts2Util.renderText("success");
+			return null;
+		}else{
+			Struts2Util.renderText("fail");
+			return null;
+		}
+	}
 	
+	/**
+	 * 获取当前时间几个月后日期
+	 * @param month
+	 * @return
+	 */
+	private Date getDate(Long month){
+		LocalDate today = LocalDate.now();
+		LocalDate newday = today.plusMonths(month);
+		ZoneId zone = ZoneId.systemDefault();
+	    Instant instant = newday.atStartOfDay().atZone(zone).toInstant();
+	    java.util.Date date = Date.from(instant);
+		return date;
+	}
 
 	public Book getBook() {
 		return book;

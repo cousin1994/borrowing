@@ -27,7 +27,8 @@ import com.cousin.util.struts2.BasicSuperAction;
 @ParentPackage("my-default")
 @Results({
 	@Result(name=BasicSuperAction.RELOAD  , location="admin.action" , type="redirect"),
-	@Result(name="success", location="/WEB-INF/content/admin/admin.jsp")
+	@Result(name="success", location="/WEB-INF/content/admin/admin.jsp"),
+	@Result(name="reader", location="/WEB-INF/content/admin/reader.jsp")
 })
 public class AdminAction extends BasicSuperAction {
 
@@ -54,7 +55,12 @@ public class AdminAction extends BasicSuperAction {
 	 */
 	@Override
 	public String list() throws Exception {
-		return SUCCESS;
+		Userrole user = (Userrole) request.getSession().getAttribute("user");
+		if(user.getRole()==2){
+			return "reader";
+		}else{
+			return SUCCESS;
+		}
 	}
 
 	/**

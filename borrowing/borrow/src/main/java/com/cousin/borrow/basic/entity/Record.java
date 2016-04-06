@@ -31,9 +31,10 @@ public class Record implements java.io.Serializable {
 	private Long bookid;
 	private Date begin;
 	private Date end;
-	private Short money;
-	private Short renew;
-	private Short state;
+	private int money;
+	private int renew;
+	private int state;
+	private String bookname;
 
 	// Constructors
 
@@ -43,7 +44,7 @@ public class Record implements java.io.Serializable {
 
 	/** full constructor */
 	public Record(Long readid, Long bookid, Date begin, Date end,
-			Short money, Short renew, Short state) {
+			int money, int renew, int state,String bookname) {
 		this.readid = readid;
 		this.bookid = bookid;
 		this.begin = begin;
@@ -51,6 +52,7 @@ public class Record implements java.io.Serializable {
 		this.money = money;
 		this.renew = renew;
 		this.state = state;
+		this.bookname = bookname;
 	}
 
 	// Property accessors
@@ -105,28 +107,37 @@ public class Record implements java.io.Serializable {
 	}
 
 	@Column(name = "MONEY", precision = 3, scale = 0)
-	public Short getMoney() {
+	public int getMoney() {
 		return this.money;
 	}
 
-	public void setMoney(Short money) {
+	public void setMoney(int money) {
 		this.money = money;
 	}
 
 	@Column(name = "RENEW", precision = 2, scale = 0)
-	public Short getRenew() {
+	public int getRenew() {
 		return this.renew;
 	}
 
-	public void setRenew(Short renew) {
+	public void setRenew(int renew) {
 		this.renew = renew;
 	}
 	@Column(name = "STATE", precision = 2, scale = 0)
-	public Short getState(){
+	public int getState(){
 		return this.state;
 	}
 	
-	public void setState(Short state){
+	public void setState(int state){
 		this.state = state;
+	}
+	
+	@Column(name="BOOKNAME",precision = 500)
+	public String getBookname(){
+		return this.bookname;
+	}
+	
+	public void setBookname(String bookname){
+		this.bookname = bookname;
 	}
 }

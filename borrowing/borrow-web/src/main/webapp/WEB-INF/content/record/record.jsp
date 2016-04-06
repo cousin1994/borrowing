@@ -100,7 +100,7 @@
                         	<a href="/book/book!list.action"><em class="fa fa-book"></em> 图书查询</a>
                         </li>
                         <li>
-                            <a href="/record/record!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
+                            <a href="/user/user!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
                         </li>
                         <li>
                         	<a href="#">个人设置</a>
@@ -121,24 +121,6 @@
             </div>
             <!-- /.row -->
             <div class="row">
-            	<div class="col-lg-12">
-            		<form class="form-inline" action="/book/book!list.action">
-							  <div class="form-group">
-								    <label for="publisherlaber">出版社</label>
-								    <input class="form-control" id="publisherinput" name="search_LIKE_publisher" placeholder="请输入出版社">
-							  </div>
-							  <div class="form-group">
-								    <label for="authorlaber">作者</label>
-								    <input class="form-control" id="authorinput" name="search_LIKE_fauthor" placeholder="请输入作者">
-							  </div>
-							   <div class="form-group">
-								    <label for="booklaber">书本名字</label>
-								    <input class="form-control" id="bookinput" name="search_LIKE_bname" placeholder="请输入书本名字">
-							  </div>
-							  	<button type="submit" class="btn btn-default">分类搜索</button>
-							  	<button type="reset" class="btn btn-default">重置</button>
-						</form>
-            	</div>
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -151,11 +133,11 @@
                                     <thead>
                                         <tr>
                                             <th>图书名字</th>
-                                            <th>馆藏状态</th>
-                                            <th>索书号</th>
-                                            <th>书本类型</th>
-                                            <th>出版社</th>
-                                            <th>出版日期</th>
+                                            <th>当前状态</th>
+                                            <th>能否续借</th>
+                                            <th>借阅日期</th>
+                                            <th>归还日期</th>
+                                            <th>违约金额</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -224,25 +206,34 @@
                 serverSide : true,
                 stateSave : true, //允许浏览器进行缓存
             	searching : false, //禁止搜索
-                ajax : "/book/book!datatableList.action",
+                ajax : "../record/record!datatableList.action",
                 columns: [
-                            {"data": "bname"},
-                            {"data": "isborrowed",
+                            {"data": "bookname"},
+                            {"data": "state",
                             	render : function(data,type,full){
                             		if(data==0){
-                            			data = "<a  href='#'  >在库</a>";
-                            		}else if(data==1){
                             			data = "<a  href='#'  >已预借</a>";
-                            		}else{
+                            		}else if(data==1){
                             			data = "<a  href='#'  >已借出</a>";
+                            		}else{
+                            			data = "<a  href='#'  >欠费未还</a>";
                             		}
                             		return data;
                             	}
                             },
-                            {"data": "ssh"},
-                            {"data": "type"},
-                            {"data": "publisher"},
-                            {"data": "publishdate"},
+                            {"data": "renew",
+                            	render : function(data,type,full){
+                            		if(data==0){
+                            			data = "<a  href='#'  >能续借</a>";
+                            		}else{
+                            			data = "<a  href='#'  >不能续借</a>";
+                            		}
+                            		return data;
+                            	}
+                            },
+                            {"data": "begin"},
+                            {"data": "end"},
+                            {"data": "money"},
                             {"data": "id"}
                             ],
                 columnDefs: [
@@ -250,10 +241,10 @@
                               targets: 6, //表示具体需要操作的目标列，下标从0开始
                               orderable : false, 
                                render : function(data, type, full) {
-                            	   if (full.isborrowed==1){
-                            		   var html = "<button type='button' class='btn btn-primary ' disabled='disabled'>预借</button>";
+                            	   if (full.renew==1){
+                            		   var html = "<button type='button' class='btn btn-primary ' disabled='disabled'>续借</button>";
                             	   }else{
-                            		   var html = '<button type="button" class="btn btn-primary" onclick="_yujie('+data+')">预借</button>';
+                            		   var html = '<button type="button" class="btn btn-primary" onclick="_yujie('+data+')">续借</button>';
                             	   }
                             	   return html;
                                 }
@@ -282,6 +273,12 @@
                         "sSortDescending": ": 以降序排列此列"
                     }
                 },
+                "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-4'><'col-xs-6'f>r>" +
+                "t" +
+                "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+        initComplete: function () {
+            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" onclick="_add(1)" >添加图书</button>');
+        }
         });
      
      
@@ -300,11 +297,11 @@
      * @param name
      */
     function _yujie(data) {
-    	 layer.confirm('确定要预借本图书?', {icon: 3, title:'提 示'}, function(index){
+    	 layer.confirm('确定要续借本图书?', {icon: 3, title:'提 示'}, function(index){
     		 $.ajax({
     			 url : '/book/book!reserve.action?sid='+data,
     			 success : function (data) {
-    				 top.layer.msg("预借成功",{time:500},function(){
+    				 top.layer.msg("续借成功",{time:500},function(){
 							top.layer.close(index);
 						});
     				 $('#table').DataTable().ajax.reload();

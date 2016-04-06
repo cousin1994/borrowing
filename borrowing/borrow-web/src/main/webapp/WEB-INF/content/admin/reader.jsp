@@ -64,33 +64,12 @@
 
             <ul class="nav navbar-top-links navbar-right">
             	<li>
-            		<h5>欢迎登录</h5>
-            	</li>
-                <!-- 消息按钮，跳到消息窗口 -->
-                <li>
-                	<a href="#">
+                	<a href="javascript:logout();">
                 		<div>
-                			<i class="fa fa-bell fa-fw"></i>
+                			<i class="fa fa-sign-out fa-fw"></i>
                 		</div>
                 	</a>
                 </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 个人设置</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="javascript:logout();"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -111,104 +90,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="javascript:location.reload();"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
-                        </li>
-                        <li><a href="#"><em class="fa fa-book"></em> 图书管理<span class="fa arrow"></span></a>
-                          <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">修改图书状态</a>
-                                </li>
-                                <li>
-                                    <a href="/book/book!list.action">查看图书信息</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="/admin!list.action"><i class="fa fa-dashboard fa-fw"></i> 控制台</a>
                         </li>
                         <li>
-                            <a href="/user/user!list.action"><i class="fa fa-table fa-fw"></i> 用户管理</a>
+                        	<a href="/book/book!list.action"><em class="fa fa-book"></em> 图书查询</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> 图书查询<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                            	<li>
-                                	<a href="#">已经借出的图书</a>
-                                </li>
-                                <li>
-                                	<a href="#">在库的图书</a>
-                                </li>
-                                <li>
-                                	<a href="#">今天借出的图书</a>
-                                </li>
-                            </ul>
+                            <a href="/record/record!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
                         </li>
                         <li>
-                        	<a href="#">系统设置</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                        	<a href="#">个人设置</a>
                         </li>
                     </ul>
                 </div>
@@ -218,10 +109,6 @@
         </nav>
 		
         <div id="page-wrapper">
-		<div id="myAlert" class="alert alert-danger col-lg-offset-9 col-lg-3 fade in">
-			   	<a href="#" class="close" data-dismiss="alert">&times;</a>
-			   	有 <a href="javascript:logout();"><strong>12条！</strong></a>未读消息。
-         </div> 
             <div class="row">
                 <div class="col-lg-12">
                     	<h1 class="page-header">控制台</h1>
@@ -239,13 +126,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><span class="fa fa-edit"></span></div>
-                                    <div>新增图书</div>
+                                    <div>续借图书</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:_add(0)">
+                        <a href="javascript:_xujie()">
                             <div class="panel-footer">
-                                <span class="pull-left">点击新增</span>
+                                <span class="pull-left">查看可续借图书</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -261,13 +148,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><span class="fa fa-edit"></span></div>
-                                    <div>新增用户</div>
+                                    <div>修改密码</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:_adduser(0)">
+                        <a href="javascript:_editPassword()">
                             <div class="panel-footer">
-                                <span class="pull-left">点击新增</span>
+                                <span class="pull-left">点击修改密码</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -283,13 +170,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><span class="fa fa-edit"></span></div>
-                                    <div>借阅图书</div>
+                                    <div>查看欠费情况</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">点击新增记录</span>
+                                <span class="pull-left">点击查看欠费情况</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -334,10 +221,6 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
     
     <!-- layer javaScript -->
     <script src="/bower_components/layer/layer.js" ></script>

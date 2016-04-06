@@ -1,8 +1,11 @@
 package com.cousin.borrow.basic.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.cousin.borrow.basic.dao.RecordDao;
@@ -52,5 +55,16 @@ public class RecordService {
 		return recordDao.findOne(id);
 	}
 	
+	/**
+	 * 查找
+	 * @param searchParams
+	 * @param pagenumble
+	 * @param size
+	 * @param order
+	 * @return
+	 */
+	public Page<Record> findpage(Map<String, Object> searchParams,int pagenumble, int size,Order...order){
+		return recordDao.findAll(searchParams, pagenumble, size, order);
+	}
 	
 }
