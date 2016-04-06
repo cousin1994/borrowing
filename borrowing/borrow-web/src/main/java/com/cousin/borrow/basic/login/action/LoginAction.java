@@ -22,7 +22,9 @@ import com.cousin.util.struts2.BasicSuperAction;
 @Namespace("/")
 @Results({
 	@Result(name="input", location="/login.jsp"),
-	@Result(name="admin", location="/WEB-INF/content/admin/admin.jsp")
+	@Result(name="admin", location="/WEB-INF/content/admin/admin.jsp"),
+	@Result(name="reader", location="/WEB-INF/content/admin/reader.jsp")
+	
 })
 public class LoginAction extends BasicSuperAction<Userrole> {
 
@@ -60,8 +62,8 @@ public class LoginAction extends BasicSuperAction<Userrole> {
 			msg = "帐号或密码错误，重新输入";
 			request.setAttribute("msg", msg);
 			return INPUT;
-		}else if(userrole.getRole()==2){//普通用户
-			return "user";
+		}else if(userrole.getRole()==2){//读者
+			return "reader";
 		}else{//管理员
 			return "admin";
 		}
