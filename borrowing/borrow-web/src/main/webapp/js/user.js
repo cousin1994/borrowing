@@ -171,7 +171,7 @@ $(document).ready(function() {
     								$('#table').DataTable().ajax.reload();
     							});
     						}else{
-    							top.layer.msg("图书新增失败",{time:500});
+    							top.layer.msg("用户新增失败",{time:500});
     						}
     					},
     					error : function(data){

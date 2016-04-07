@@ -186,6 +186,33 @@ public class BookAction extends BasicSuperAction<Book> {
 	}
 	
 	/**
+	 * 借阅图书
+	 * @return
+	 */
+	public String borrow(){
+		Userrole user = (Userrole) request.getSession().getAttribute("user");
+		book = bookService.findById(sid);
+		book.setIsborrowed(1L);
+		Record record = new Record();
+		record.setBookid(book.getId());
+		record.setReadid(user.getId());
+		record.setBegin(new Date());
+		record.setRenew(0);
+		record.setState(0);
+		record.setEnd(getDate(2L));//
+		record.setBookname(book.getBname());
+		recordService.save(record);
+		boolean flag = bookService.save(book);
+		if(flag){
+			Struts2Util.renderText("success");
+			return null;
+		}else{
+			Struts2Util.renderText("fail");
+			return null;
+		}
+	}
+	
+	/**
 	 * 获取当前时间几个月后日期
 	 * @param month
 	 * @return
