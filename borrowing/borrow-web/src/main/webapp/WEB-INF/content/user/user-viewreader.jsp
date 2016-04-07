@@ -99,7 +99,7 @@
                             <a href="/record/record!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
                         </li>
                         <li>
-                        	<a href="/user/user!view.action"><i class="fa fa-table fa-fw"></i>个人设置</a>
+                        	<a href="#">个人设置</a>
                         </li>
                     </ul>
                 </div>

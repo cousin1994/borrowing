@@ -47,6 +47,24 @@ public class RecordService {
 	}
 	
 	/**
+	 * 根据图书id查找所有记录
+	 * @param bookid
+	 * @return
+	 */
+	public Record findByBookid(Long bookid){
+		return recordDao.findByBookid(bookid);
+	}
+	
+	/**
+	 * 根据读者id查找所有记录
+	 * @param readid
+	 * @return
+	 */
+	public List<Record> findByReadid(Long readid){
+		return recordDao.findByReadid(readid);
+	}
+	
+	/**
 	 * 通过某个ID查找整个实体类
 	 * @param id
 	 * @return

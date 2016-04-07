@@ -123,6 +123,15 @@ public class UserAction extends BasicSuperAction<Userrole> {
 	}
 	
 	/**
+	 * 个人详细信息
+	 * @return
+	 */
+	public String view(){
+		user = (Userrole) request.getSession().getAttribute("user");
+		return "viewreader";
+	}
+	
+	/**
 	 * delete user
 	 * @return
 	 */
