@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 
+import com.cousin.borrow.basic.entity.Book;
 import com.cousin.borrow.basic.entity.Record;
 import com.cousin.borrow.basic.entity.Userrole;
 import com.cousin.borrow.basic.service.BookService;
@@ -42,6 +43,18 @@ public class RecordAction extends BasicSuperAction<Record> {
 	@Autowired
 	private BookService bookService;
 	
+	private Book book;
+	
+	public Book getBook() {
+		return book;
+	}
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+
 	@Override
 	public String list() throws Exception {
 		return SUCCESS;
@@ -97,5 +110,23 @@ public class RecordAction extends BasicSuperAction<Record> {
 		return null;
 	}
 	
+	/**续借图书 
+	 * 描述：
+	 * @author 戴嘉诚
+	 * @version 1.0   
+	 * @return
+	 */
+	public String xujie(){
+		Record record = recordService.findByBookid(sid);
+		record.setRenew(1);
+		boolean flag = bookService.save(book);
+		if(flag){
+			Struts2Util.renderText("success");
+			return null;
+		}else{
+			Struts2Util.renderText("fail");
+			return null;
+		}
+	}
 
 }
