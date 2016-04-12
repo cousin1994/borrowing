@@ -100,7 +100,7 @@
                         	<a href="/book/book!list.action"><em class="fa fa-book"></em> 图书查询</a>
                         </li>
                         <li>
-                            <a href="/user/user!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
+                            <a href="/record/record!list.action"><i class="fa fa-table fa-fw"></i> 个人资料</a>
                         </li>
                         <li>
                         	<a href="#">个人设置</a>
@@ -214,7 +214,7 @@
                             		if(data==0){
                             			data = "<a  href='#'  >已预借</a>";
                             		}else if(data==1){
-                            			data = "<a  href='#'  >已借出</a>";
+                            			data = "<a  href='#'  >借出</a>";
                             		}else{
                             			data = "<a  href='#'  >欠费未还</a>";
                             		}
@@ -272,13 +272,7 @@
                         "sSortAscending": ": 以升序排列此列",
                         "sSortDescending": ": 以降序排列此列"
                     }
-                },
-                "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-4'><'col-xs-6'f>r>" +
-                "t" +
-                "<'row'<'col-xs-6'i><'col-xs-6'p>>",
-        initComplete: function () {
-            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" onclick="_add(1)" >添加图书</button>');
-        }
+                }
         });
      
      
