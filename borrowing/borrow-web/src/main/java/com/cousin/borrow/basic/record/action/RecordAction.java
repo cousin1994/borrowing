@@ -1,4 +1,4 @@
-package com.cousin.borrow.basic.record.action;
+﻿package com.cousin.borrow.basic.record.action;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -52,9 +52,11 @@ public class RecordAction extends BasicSuperAction<Record> {
 	@Autowired
 	private BookService bookService;
 	
+
 	@Autowired
 	private UserroleService userroleService;
 	
+
 	@Override
 	public String list() throws Exception {
 		return SUCCESS;
