@@ -48,6 +48,7 @@ public class LoginAction extends BasicSuperAction<Userrole> {
 	 * @return
 	 */
 	public String loginout(){
+		request.getSession().removeAttribute("user");
 		return INPUT;
 	}
 	

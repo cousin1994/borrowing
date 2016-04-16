@@ -21,9 +21,11 @@
                             		if(data==0){
                             			data = "<a  href='#'  >在库</a>";
                             		}else if(data==1){
-                            			data = "<a  href='#'  >预借</a>";
-                            		}else{
+                            			data = "<a  href='#'  >已经被预借</a>";
+                            		}else if(data==2){
                             			data = "<a  href='#'  >已经借出</a>";
+                            		}else if(data==3){
+                            			data = "<a  href='#'  >到期没归还</a>";
                             		}
                             		return data;
                             	}

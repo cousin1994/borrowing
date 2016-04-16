@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>新增图书界面</title>
+	<title>新增用户界面</title>
 
 	<!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" id="userinputform" action="user!save.action" namespace="/user">
-                                    <input type="hidden" name="user.id" value="${user.id}">
+                                    <input type="hidden" name="user.id" value="${request.user.id}">
                                         <div class="form-group">
                                         	<div class="input-group">
 	                                        	<span class="input-group-addon">借阅证号</span>

@@ -36,7 +36,30 @@ public class BookService {
 		return true;
 	}
 	
+	/**
+	 * 通过索书号查找图书
+	 * @param ssh
+	 * @return
+	 */
+	public Book findBySsh(String ssh){
+		List<Book> booklist = bookDao.findBySsh(ssh);
+		Book book = null;
+		for(int i=0; i<booklist.size(); i++){
+			book = booklist.get(i);
+			if(book.getIsborrowed()==0){
+				break;
+			}
+			book = null;
+		}
+		return book;
+	}
 
+	/**
+	 * 批量插入图书
+	 * @param book
+	 * @param num
+	 * @return
+	 */
 	public boolean save(Book book,int num){
 		List<Book> booklist = new ArrayList<Book>();
 		for (int i=0;i<num;i++){//当存在批量新增图书的时候，就调用clone克隆方法，创建一个新对象。而不是引用就对象

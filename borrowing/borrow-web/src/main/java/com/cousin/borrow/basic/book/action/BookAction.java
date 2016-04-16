@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -164,24 +165,35 @@ public class BookAction extends BasicSuperAction<Book> {
 	 */
 	public String reserve(){
 		Userrole user = (Userrole) request.getSession().getAttribute("user");
-		book = bookService.findById(sid);
-		book.setIsborrowed(1L);
-		Record record = new Record();
-		record.setBookid(book.getId());//写入图书id
-		record.setReadid(user.getId());//写入读者id
-		record.setBegin(new Date());
-		record.setRenew(0);//续借
-		record.setState(0);//状态正常
-		record.setEnd(getDate(2L));//
-		record.setBookname(book.getBname());
-		recordService.save(record);
-		boolean flag = bookService.save(book);
-		if(flag){
-			Struts2Util.renderText("success");
+		List<Record> recordlist = recordService.findByReadid(user.getId());
+		if(user.getViolate()==1){
+			Struts2Util.renderText("qianfei");
 			return null;
-		}else{
-			Struts2Util.renderText("fail");
-			return null;
+		}else {
+			if(recordlist.size()<10){
+				book = bookService.findById(sid);
+				book.setIsborrowed(1L);
+				Record record = new Record();
+				record.setBookid(book.getId());//写入图书id
+				record.setReadid(user.getId());//写入读者id
+				record.setBegin(new Date());
+				record.setRenew(0);//续借
+				record.setState(0);//状态正常
+				record.setEnd(getDate(2L));//
+				record.setBookname(book.getBname());
+				recordService.save(record);
+				boolean flag = bookService.save(book);
+				if(flag){
+					Struts2Util.renderText("success");
+					return null;
+				}else{
+					Struts2Util.renderText("fail");
+					return null;
+				}
+			}else{
+				Struts2Util.renderText("outofnumber");
+				return null;
+			}
 		}
 	}
 	

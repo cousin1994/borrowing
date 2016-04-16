@@ -3,6 +3,8 @@ package com.cousin.borrow.basic.user.action;
 import java.util.List;
 import java.util.Map;
 
+import javax.rmi.CORBA.Stub;
+
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -154,7 +156,28 @@ public class UserAction extends BasicSuperAction<Userrole> {
 		return "input";
 	}
 	
+	public String beforchange(){
+		return "change";
+	}
 	
+	/**
+	 * 修改密码
+	 * @return
+	 */
+	public String changePSW(){
+		String oldpsw = request.getParameter("oldpsw");
+		String newpsw = request.getParameter("newpsw");
+		Userrole user = (Userrole)request.getSession().getAttribute("user");
+		Userrole newuser = userService.findbyUser(user.getCode(), oldpsw);
+		if(newuser==null){
+			Struts2Util.renderText("fail");
+		}else{
+			newuser.setPassword(newpsw);
+			userService.save(newuser);
+			Struts2Util.renderText("success");
+		}
+		return null;
+	}
 	
 	/**
 	 * 新增之前

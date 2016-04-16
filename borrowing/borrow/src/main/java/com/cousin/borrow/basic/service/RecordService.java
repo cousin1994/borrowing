@@ -39,6 +39,14 @@ public class RecordService {
 	}
 	
 	/**
+	 * 批量保存
+	 * @param list
+	 */
+	public void save(List<Record> list){
+		recordDao.save(list);
+	}
+	
+	/**
 	 * 查找所有记录
 	 * @return
 	 */
@@ -65,12 +73,29 @@ public class RecordService {
 	}
 	
 	/**
+	 * 通过主键查找ID
+	 * @param id
+	 * @return
+	 */
+	public Record findById(Long id){
+		return recordDao.findOne(id);
+	}
+	
+	/**
 	 * 通过某个ID查找整个实体类
 	 * @param id
 	 * @return
 	 */
 	public Record findOne(Long id){
 		return recordDao.findOne(id);
+	}
+	
+	/**
+	 * 通过id删除记录
+	 * @param id
+	 */
+	public void deleteById(Long id){
+		recordDao.delete(id);
 	}
 	
 	/**

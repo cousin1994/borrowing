@@ -66,7 +66,7 @@
             	<li>
                 	<a href="javascript:logout();">
                 		<div>
-                			<i class="fa fa-sign-out fa-fw"></i>
+                			<i class="fa fa-power-off fa-fw"></i>
                 		</div>
                 	</a>
                 </li>
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:_xujie()">
+                        <a href="/record/record!list.action">
                             <div class="panel-footer">
                                 <span class="pull-left">查看可续借图书</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:_editPassword()">
+                        <a href="javascript:_changePSW()">
                             <div class="panel-footer">
                                 <span class="pull-left">点击修改密码</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="javascript:_watchState();">
                             <div class="panel-footer">
                                 <span class="pull-left">点击查看欠费情况</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -192,13 +192,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><span class="fa fa-edit"></span></div>
-                                    <div>归还图书</div>
+                                    <div>查阅图书</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/book/book!list.action">
                             <div class="panel-footer">
-                                <span class="pull-left">点击归还图书</span>
+                                <span class="pull-left">点击查阅图书</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -211,6 +211,86 @@
 
     </div>
     <!-- /#wrapper -->
+	<script type="text/javascript">
+		function _watchState() {
+			var state = '${user.violate}';
+			if(state==0){
+				layer.alert('没欠钱，你想给我钱吗？', {
+					  skin: 'layui-layer-molv' //样式类名
+					  ,closeBtn: 0
+					  ,shift: 4
+					});
+			}else{
+				$.ajax({
+	    			 url : '/record/record!getmoney.action',
+	    			 success : function (data) {
+	    				 layer.alert('你现在一共欠'+data+'元，快快还钱', {
+	   					  skin: 'layui-layer-lan' //样式类名
+	   					  ,closeBtn: 0
+	   					});
+					}
+	    		 });
+			}
+			
+		}
+		
+		
+		
+		//修改密码
+		function _changePSW() {
+			var type = type;
+			var _title = "改密码";
+			var _area = ['50%','40%'];
+			var _path = "../user/user!beforchange.action";
+			var index ;
+			index = top.layer.open({
+				type : 2,
+				title : _title,
+				shadeClose : false,
+				shade : 0.2,
+				maxmin : true,
+				area : _area,
+				content : [ _path,'yes'],//iframe的url , no代表不显示滚动条
+				btn : ['确定', '取消'],
+				yes: function(index,layero) {//确定之后的函数
+					var _body = top.layer.getChildFrame('body' ,index);
+					var _form = _body.find('#changeform');
+					var isok = $(_form).validate({
+						//这里是加验证的
+					}).form();
+					if(isok){
+						$.ajax({
+							type:"POST",
+							dataType:"text",
+							url:"../user/user!changePSW.action",
+							data : _form.serialize(),
+							success:function(data){
+								if(data=="success"){
+									top.layer.msg("用户修改密码成功",{time:500},function(){
+										top.layer.close(index);
+									});
+								}else{
+									top.layer.msg("用户修改密码失败",{time:500});
+								}
+							},
+							error : function(data){
+								alert("error"+data.responseText);
+							}
+						});
+					}else{
+						//阻止关闭
+						top.layer.close(index);
+					};
+				},
+				btn2 : function(index){
+					//这是btn2的
+				}
+			});
+
+		}
+		
+	</script>
+
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>

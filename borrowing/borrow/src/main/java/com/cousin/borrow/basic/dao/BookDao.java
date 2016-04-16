@@ -1,5 +1,7 @@
 package com.cousin.borrow.basic.dao;
 
+import java.util.List;
+
 import com.cousin.borrow.basic.entity.Book;
 import com.cousin.util.data.jpa.repository.BaseJpaRepository;
 
@@ -9,5 +11,11 @@ import com.cousin.util.data.jpa.repository.BaseJpaRepository;
 */
 public interface BookDao extends BaseJpaRepository<Book, Long> {
 
+	/**
+	 * 通过索书号查找图书
+	 * @param ssh
+	 * @return
+	 */
+	public List<Book> findBySsh(String ssh);
 	
 }

@@ -10,10 +10,17 @@ import com.cousin.util.data.jpa.repository.BaseJpaRepository;
 public interface UserroleDao extends BaseJpaRepository<Userrole, Long> {
 	
 	/**
-	 * 通过用户名查找实体类
+	 * 通过用户名和密码查找实体类
 	 * @param Code
 	 * @return
 	 */
 	public Userrole findByCodeAndPassword(String Code,String Password);
 
+	/**
+	 * 通过用户名查找用户
+	 * @param Code
+	 * @return
+	 */
+	public Userrole findByCode(String Code);
+	
 }

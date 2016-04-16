@@ -31,7 +31,7 @@ public class Record implements java.io.Serializable {
 	private Long bookid;
 	private Date begin;
 	private Date end;
-	private int money;
+	private double money;
 	private int renew;
 	private int state;
 	private String bookname;
@@ -44,7 +44,7 @@ public class Record implements java.io.Serializable {
 
 	/** full constructor */
 	public Record(Long readid, Long bookid, Date begin, Date end,
-			int money, int renew, int state,String bookname) {
+			double money, int renew, int state,String bookname) {
 		this.readid = readid;
 		this.bookid = bookid;
 		this.begin = begin;
@@ -106,12 +106,12 @@ public class Record implements java.io.Serializable {
 		this.end = end;
 	}
 
-	@Column(name = "MONEY", precision = 3, scale = 0)
-	public int getMoney() {
+	@Column(name = "MONEY", precision = 5, scale = 2)
+	public double getMoney() {
 		return this.money;
 	}
 
-	public void setMoney(int money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
 

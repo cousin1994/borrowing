@@ -250,10 +250,10 @@
                               targets: 6, //表示具体需要操作的目标列，下标从0开始
                               orderable : false, 
                                render : function(data, type, full) {
-                            	   if (full.isborrowed==1){
-                            		   var html = "<button type='button' class='btn btn-primary ' disabled='disabled'>预借</button>";
-                            	   }else{
+                            	   if (full.isborrowed==0){
                             		   var html = '<button type="button" class="btn btn-primary" onclick="_yujie('+data+')">预借</button>';
+                            	   }else{
+                            		   var html = "<button type='button' class='btn btn-primary ' disabled='disabled'>预借</button>";
                             	   }
                             	   return html;
                                 }
@@ -304,10 +304,24 @@
     		 $.ajax({
     			 url : '/book/book!reserve.action?sid='+data,
     			 success : function (data) {
-    				 top.layer.msg("预借成功",{time:500},function(){
-							top.layer.close(index);
-						});
-    				 $('#table').DataTable().ajax.reload();
+    				 if(data=="success"){
+	    				 top.layer.msg("预借成功",{time:1000},function(){
+								top.layer.close(index);
+							});
+	    				 $('#table').DataTable().ajax.reload();
+    				 }else if(data=="outofnumber"){
+    					 top.layer.msg("您借书超过上限，不能预借",{time:1000},function(){
+								top.layer.close(index);
+							});
+    				 }else if(data=="qianfei"){
+    					 top.layer.msg("您当前欠费，不能预借",{time:1000},function(){
+								top.layer.close(index);
+							});
+ 				 }	else{
+    					 top.layer.msg("预借失败",{time:1000},function(){
+								top.layer.close(index);
+							});
+    				 }
 				}
     		 });
  		    layer.close(index);

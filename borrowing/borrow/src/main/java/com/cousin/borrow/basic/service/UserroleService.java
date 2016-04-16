@@ -62,6 +62,14 @@ public class UserroleService {
 		return user;
 	}
 	
+	/**
+	 * 通过用户名查找
+	 * @param code
+	 * @return
+	 */
+	public Userrole findByCode(String code){
+		return userroleDao.findByCode(code);
+	}
 	
 	/**
 	 * 根据id查找用户

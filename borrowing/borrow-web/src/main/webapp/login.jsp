@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                        	<form role="form" action="login!login.action" namespace="/" method="post" class="login-form">
+                        	<form role="form" action="login!login" namespace="/" method="post" class="login-form">
                             	<div class="form-group">
                                 	<label class="sr-only" for="form-username">Username</label>
                                     <input type="text" name="Code" placeholder="请输入用户名..." class="form-username form-control" id="form-username">
