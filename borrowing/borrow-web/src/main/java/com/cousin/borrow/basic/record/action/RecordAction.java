@@ -1,4 +1,4 @@
-﻿package com.cousin.borrow.basic.record.action;
+package com.cousin.borrow.basic.record.action;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -14,7 +14,6 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.apache.struts2.util.StrutsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
